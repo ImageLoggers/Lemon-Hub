@@ -900,20 +900,19 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         </section>
     </main>
 
-    <!-- Ad Container -->
-    <div id="ad-container" class="ad-container"></div>
-
-    <!-- Adsterra Script -->
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+    <!-- Adsterra Banner -->
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+    </div>
 
     <script>
         // script.js
@@ -985,10 +984,9 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         }
 
         function showAd() {
-            // The Adsterra script will automatically load the ad
-            // We just need to make sure the container is visible
-            const adContainer = document.getElementById('ad-container');
-            adContainer.style.display = 'block';
+            // The Adsterra banner is already loaded in the container
+            // This function can be used for additional ad logic if needed
+            console.log('Ad interaction detected');
         }
 
         function createUniversalRipple(event) {
