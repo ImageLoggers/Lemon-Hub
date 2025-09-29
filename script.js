@@ -1,498 +1,4 @@
-// script.js
-let adLoaded = false;
-let secondAdLoaded = false;
-
-// Authentication and Voting System
-let currentUser = null;
-let voteCounts = {
-    thumbsUp: 0,
-    thumbsDown: 0,
-    favorite: 0
-};
-
-// Default Facebook profile picture
-const DEFAULT_AVATAR = 'https://static.xx.fbcdn.net/rsrc.php/v1/yR/r/tInzwsw2pVX.png';
-
-// Load data from localStorage
-function loadAppData() {
-    const savedVotes = localStorage.getItem('lemonHubVotes');
-    const savedUser = localStorage.getItem('lemonHubUser');
-    
-    if (savedVotes) {
-        voteCounts = JSON.parse(savedVotes);
-    }
-    
-    if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        updateAuthUI();
-        updateProfileUI();
-    }
-    
-    updateVoteDisplays();
-    updateVoteButtonStates();
-}
-
-// Save data to localStorage
-function saveAppData() {
-    localStorage.setItem('lemonHubVotes', JSON.stringify(voteCounts));
-    if (currentUser) {
-        localStorage.setItem('lemonHubUser', JSON.stringify(currentUser));
-    }
-}
-
-// Update vote count displays
-function updateVoteDisplays() {
-    document.getElementById('thumbsUpCount').textContent = voteCounts.thumbsUp;
-    document.getElementById('thumbsDownCount').textContent = voteCounts.thumbsDown;
-    document.getElementById('favoriteCount').textContent = voteCounts.favorite;
-}
-
-// Update vote button states based on user voting
-function updateVoteButtonStates() {
-    const thumbsUpBtn = document.querySelector('.vote-btn.thumbs-up');
-    const thumbsDownBtn = document.querySelector('.vote-btn.thumbs-down');
-    const favoriteBtn = document.querySelector('.vote-btn.favorite');
-    
-    if (!currentUser) {
-        // User not logged in
-        thumbsUpBtn.disabled = true;
-        thumbsDownBtn.disabled = true;
-        favoriteBtn.disabled = true;
-        
-        [thumbsUpBtn, thumbsDownBtn, favoriteBtn].forEach(btn => {
-            btn.style.opacity = '0.6';
-            btn.style.cursor = 'not-allowed';
-        });
-        return;
-    }
-    
-    // User is logged in, check if they've voted
-    if (currentUser.votes && currentUser.votes.thumbsUp) {
-        thumbsUpBtn.disabled = true;
-        thumbsUpBtn.style.opacity = '0.6';
-        thumbsUpBtn.style.cursor = 'not-allowed';
-    }
-    
-    if (currentUser.votes && currentUser.votes.thumbsDown) {
-        thumbsDownBtn.disabled = true;
-        thumbsDownBtn.style.opacity = '0.6';
-        thumbsDownBtn.style.cursor = 'not-allowed';
-    }
-    
-    if (currentUser.votes && currentUser.votes.favorite) {
-        favoriteBtn.disabled = true;
-        favoriteBtn.style.opacity = '0.6';
-        favoriteBtn.style.cursor = 'not-allowed';
-    }
-}
-
-// Handle voting
-function vote(type) {
-    if (!currentUser) {
-        alert('Please login to vote!');
-        navigateTo('#Login');
-        return;
-    }
-    
-    // Check if user has already voted for this type
-    if (currentUser.votes && currentUser.votes[type]) {
-        alert(`You can only ${type === 'thumbsUp' ? 'like' : type === 'thumbsDown' ? 'dislike' : 'favorite'} once per account!`);
-        return;
-    }
-    
-    // Update vote count
-    voteCounts[type]++;
-    
-    // Mark user as having voted for this type
-    if (!currentUser.votes) {
-        currentUser.votes = {};
-    }
-    currentUser.votes[type] = true;
-    
-    updateVoteDisplays();
-    updateVoteButtonStates();
-    updateProfileStats();
-    saveAppData();
-    activateAd();
-    
-    // Visual feedback
-    const button = event.currentTarget;
-    button.style.transform = 'scale(1.1)';
-    setTimeout(() => {
-        button.style.transform = 'scale(1)';
-    }, 200);
-}
-
-// Authentication Functions
-function handleEmailLogin(event) {
-    event.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    // Simple validation
-    if (!email || !password) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    // Simulate email login
-    const user = {
-        id: 'email_' + Math.random().toString(36).substr(2, 9),
-        name: email.split('@')[0],
-        email: email,
-        avatar: DEFAULT_AVATAR,
-        provider: 'email',
-        votes: {},
-        memberSince: new Date().toLocaleDateString(),
-        password: password // In real app, this should be hashed
-    };
-    
-    handleUserLogin(user);
-}
-
-function handleEmailSignup(event) {
-    event.preventDefault();
-    const username = document.getElementById('signupUsername').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    
-    // Simple validation
-    if (!username || !email || !password) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    if (password.length < 6) {
-        alert('Password must be at least 6 characters long');
-        return;
-    }
-    
-    // Simulate email signup
-    const user = {
-        id: 'email_' + Math.random().toString(36).substr(2, 9),
-        name: username,
-        email: email,
-        avatar: DEFAULT_AVATAR,
-        provider: 'email',
-        votes: {},
-        memberSince: new Date().toLocaleDateString(),
-        password: password // In real app, this should be hashed
-    };
-    
-    handleUserLogin(user);
-}
-
-function handleUserLogin(user) {
-    currentUser = user;
-    updateAuthUI();
-    updateProfileUI();
-    saveAppData();
-    
-    // Show welcome message
-    showNotification(`Welcome, ${user.name}!`);
-    
-    // Refresh page to update UI
-    setTimeout(() => {
-        window.location.reload();
-    }, 1000);
-}
-
-function logout() {
-    currentUser = null;
-    updateAuthUI();
-    saveAppData();
-    showNotification('Logged out successfully');
-    
-    // Refresh page to update UI
-    setTimeout(() => {
-        window.location.reload();
-    }, 1000);
-}
-
-function updateAuthUI() {
-    const authSection = document.getElementById('authSection');
-    
-    if (currentUser) {
-        // User is logged in - show profile
-        authSection.innerHTML = `
-            <div class="user-profile" onclick="toggleProfileDropdown()">
-                <img src="${currentUser.avatar}" alt="${currentUser.name}" class="user-avatar">
-                <span class="user-name">${currentUser.name}</span>
-            </div>
-        `;
-    } else {
-        // User is not logged in
-        authSection.innerHTML = `
-            <button id="authButton" class="nav-btn auth" onclick="navigateTo('#Login')">Login</button>
-        `;
-    }
-    
-    updateVoteButtonStates();
-}
-
-function updateProfileUI() {
-    if (!currentUser) return;
-    
-    // Update profile section
-    document.getElementById('profileUsername').textContent = currentUser.name;
-    document.getElementById('profileEmail').textContent = currentUser.email;
-    document.getElementById('profileAvatar').src = currentUser.avatar;
-    
-    // Update settings section
-    document.getElementById('settingsUsername').textContent = currentUser.name;
-    document.getElementById('settingsEmail').textContent = currentUser.email;
-    document.getElementById('settingsMemberSince').textContent = currentUser.memberSince;
-    
-    // Update profile stats
-    updateProfileStats();
-}
-
-function updateProfileStats() {
-    if (!currentUser) return;
-    
-    const likesCount = (currentUser.votes && currentUser.votes.thumbsUp) ? 1 : 0;
-    const favoritesCount = (currentUser.votes && currentUser.votes.favorite) ? 1 : 0;
-    
-    document.getElementById('likesCount').textContent = likesCount;
-    document.getElementById('favoritesCount').textContent = favoritesCount;
-    document.getElementById('memberSince').textContent = currentUser.memberSince;
-}
-
-function toggleProfileDropdown() {
-    const dropdown = document.getElementById('profileDropdown');
-    dropdown.classList.toggle('show');
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const dropdown = document.getElementById('profileDropdown');
-    const profile = document.querySelector('.user-profile');
-    
-    if (!profile.contains(event.target) && !dropdown.contains(event.target)) {
-        dropdown.classList.remove('show');
-    }
-});
-
-function handleAvatarUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-        alert('Please select an image file');
-        return;
-    }
-    
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-        alert('Please select an image smaller than 5MB');
-        return;
-    }
-    
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        // Update user avatar
-        currentUser.avatar = e.target.result;
-        updateAuthUI();
-        updateProfileUI();
-        saveAppData();
-        showNotification('Profile picture updated successfully!');
-    };
-    reader.readAsDataURL(file);
-}
-
-function handlePasswordChange(event) {
-    event.preventDefault();
-    const currentPassword = document.getElementById('currentPassword').value;
-    const newPassword = document.getElementById('newPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    
-    // Validation
-    if (!currentPassword || !newPassword || !confirmPassword) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    if (currentPassword !== currentUser.password) {
-        alert('Current password is incorrect');
-        return;
-    }
-    
-    if (newPassword.length < 6) {
-        alert('New password must be at least 6 characters long');
-        return;
-    }
-    
-    if (newPassword !== confirmPassword) {
-        alert('New passwords do not match');
-        return;
-    }
-    
-    // Update password
-    currentUser.password = newPassword;
-    saveAppData();
-    
-    // Reset form
-    event.target.reset();
-    
-    showNotification('Password updated successfully!');
-}
-
-function showDeleteConfirmation() {
-    document.getElementById('deleteModal').style.display = 'block';
-}
-
-function hideDeleteConfirmation() {
-    document.getElementById('deleteModal').style.display = 'none';
-}
-
-function deleteAccount() {
-    // Delete user account
-    currentUser = null;
-    localStorage.removeItem('lemonHubUser');
-    updateAuthUI();
-    hideDeleteConfirmation();
-    showNotification('Account deleted successfully');
-    
-    // Redirect to home
-    setTimeout(() => {
-        window.location.href = window.location.origin + window.location.pathname;
-    }, 1000);
-}
-
-function showNotification(message) {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: rgba(255, 215, 0, 0.9);
-        color: #1a1a1a;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        z-index: 1001;
-        font-weight: 600;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        animation: slideIn 0.3s ease-out;
-    `;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease-in';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// URL Routing System with Hash
-function navigateTo(hash) {
-    // Update URL hash without page reload
-    window.location.hash = hash;
-    
-    // Show the selected section
-    showSection(hash);
-    
-    // Close profile dropdown
-    document.getElementById('profileDropdown').classList.remove('show');
-    
-    // Activate ad
-    activateAd();
-}
-
-function showSection(hash) {
-    // Hide all sections
-    document.querySelectorAll('.section').forEach(sec => {
-        sec.classList.remove('active');
-    });
-    
-    // Update navigation buttons
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Determine which section to show based on hash
-    let sectionId;
-    if (hash === '#Home' || hash === '') {
-        sectionId = 'home-section';
-        document.querySelector('.nav-btn[onclick="navigateTo(\'#Home\')"]').classList.add('active');
-    } else if (hash === '#Script') {
-        sectionId = 'script-section';
-        document.querySelector('.nav-btn[onclick="navigateTo(\'#Script\')"]').classList.add('active');
-    } else if (hash === '#Profile') {
-        sectionId = 'profile-section';
-    } else if (hash === '#Settings') {
-        sectionId = 'settings-section';
-    } else if (hash === '#Login') {
-        showLoginModal();
-        return;
-    } else if (hash === '#Signup') {
-        showSignupModal();
-        return;
-    }
-    
-    // Show selected section
-    const sectionElement = document.getElementById(sectionId);
-    if (sectionElement) {
-        sectionElement.classList.add('active');
-    }
-}
-
-function showLoginModal() {
-    document.getElementById('loginModal').style.display = 'block';
-}
-
-function showSignupModal() {
-    document.getElementById('signupModal').style.display = 'block';
-}
-
-function hideModals() {
-    document.getElementById('loginModal').style.display = 'none';
-    document.getElementById('signupModal').style.display = 'none';
-    document.getElementById('deleteModal').style.display = 'none';
-}
-
-// Handle browser back/forward buttons and hash changes
-window.addEventListener('hashchange', function() {
-    showSection(window.location.hash);
-});
-
-// Handle initial page load
-window.addEventListener('DOMContentLoaded', function() {
-    const hash = window.location.hash || '#Home';
-    showSection(hash);
-    
-    // Load app data
-    loadAppData();
-    
-    // Initialize other functionality
-    initializePage();
-    
-    // Setup modal event listeners
-    setupModalEvents();
-});
-
-function setupModalEvents() {
-    // Close modals when clicking X
-    document.querySelectorAll('.close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', hideModals);
-    });
-    
-    // Close modals when clicking outside
-    window.addEventListener('click', function(event) {
-        if (event.target.classList.contains('modal')) {
-            hideModals();
-        }
-    });
-    
-    // Form submissions
-    document.getElementById('emailLoginForm').addEventListener('submit', handleEmailLogin);
-    document.getElementById('emailSignupForm').addEventListener('submit', handleEmailSignup);
-    document.getElementById('changePasswordForm').addEventListener('submit', handlePasswordChange);
-}
+// Complete the missing functions from script.js
 
 function copyScript() {
     const scriptCode = document.getElementById('script-code').textContent;
@@ -625,6 +131,10 @@ function addEnhancedRipple(element, event) {
     }, 500);
 }
 
+function addRipple(event) {
+    addEnhancedRipple(event.currentTarget, event);
+}
+
 function initializePage() {
     // Make sure all interactive elements can contain ripples
     const interactiveElements = [
@@ -634,6 +144,7 @@ function initializePage() {
         '.vote-btn', '.game-link-btn', '.auth-btn',
         '.profile-action-btn', '.change-avatar-btn',
         '.settings-save-btn', '.danger-btn', '.modal-btn',
+        '.crop-btn', '.resend-btn',
         'button', 'a'
     ];
     
@@ -659,6 +170,18 @@ function initializePage() {
             this.style.animation = this.classList.contains('lemon-float') ? 'floatLemon 2s ease-in-out' : 'float 2s ease-in-out';
         });
     });
+    
+    // Initialize zoom slider for avatar cropping
+    const zoomSlider = document.getElementById('zoomSlider');
+    if (zoomSlider) {
+        zoomSlider.addEventListener('input', function(e) {
+            const scale = e.target.value;
+            const cropImage = document.getElementById('cropImage');
+            if (cropImage) {
+                cropImage.style.transform = `scale(${scale})`;
+            }
+        });
+    }
 }
 
 // Add the CSS animation for universal ripple and notifications
@@ -699,5 +222,511 @@ additionalStyles.textContent = `
         opacity: 0;
     }
 }
+
+/* Additional styles for the new elements */
+.auth-links {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.forgot-password {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.verification-actions {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.resend-btn {
+    background: transparent;
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.resend-btn:hover:not(:disabled) {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.resend-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.timer {
+    color: #cccccc;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.crop-modal {
+    max-width: 500px;
+}
+
+.crop-container {
+    margin: 1rem 0;
+}
+
+.crop-area {
+    width: 100%;
+    height: 300px;
+    background: #1a1a1a;
+    border: 2px dashed rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#cropImage {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.crop-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#zoomSlider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#zoomSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffd700;
+    cursor: pointer;
+}
+
+#zoomSlider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffd700;
+    cursor: pointer;
+    border: none;
+}
+
+.crop-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.crop-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.crop-btn.primary {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.crop-btn.primary:hover {
+    background: linear-gradient(45deg, #45a049, #3d8b40);
+    transform: translateY(-1px);
+}
+
+.crop-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.crop-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.retrieve-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.retrieve-header {
+    margin-bottom: 2rem;
+}
+
+.retrieve-header h1 {
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.retrieve-header p {
+    color: #cccccc;
+}
+
+/* Profile dropdown positioning fix */
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    margin-top: 0.5rem;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 0.5rem;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    animation: dropdownFade 0.2s ease-out;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced user profile in navbar */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.user-profile:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd700;
+}
+
+.user-name {
+    color: #ffd700;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Enhanced modal styles */
+.modal-content {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-50px) scale(0.9); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+/* Enhanced form styles */
+.auth-form input:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Enhanced button animations */
+.nav-btn, .auth-btn, .vote-btn, .copy-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn:hover, .auth-btn:hover, .vote-btn:hover, .copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Loading states */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid #ffd700;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success states */
+.success {
+    background: linear-gradient(45deg, #4CAF50, #45a049) !important;
+}
+
+/* Error states */
+.error {
+    border-color: #f44336 !important;
+    background: rgba(244, 67, 54, 0.1) !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .profile-dropdown {
+        right: 1rem;
+        min-width: 180px;
+    }
+    
+    .crop-modal {
+        max-width: 95%;
+        margin: 2% auto;
+    }
+    
+    .retrieve-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 1.5rem;
+    }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+    .modal-content {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+    
+    .auth-form input {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .nav-btn, .auth-btn, .vote-btn {
+        border-width: 2px;
+    }
+    
+    .profile-dropdown {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
 `;
 document.head.appendChild(additionalStyles);
+
+// Enhanced error handling
+window.addEventListener('error', function(e) {
+    console.error('Global error:', e.error);
+    showNotification('An error occurred. Please try again.');
+});
+
+// Enhanced beforeunload handler
+window.addEventListener('beforeunload', function() {
+    // Save any pending data
+    saveAppData();
+});
+
+// Service Worker registration for PWA capabilities (optional)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
+
+// Enhanced session management
+let sessionTimer;
+function resetSessionTimer() {
+    clearTimeout(sessionTimer);
+    // Auto logout after 24 hours of inactivity
+    sessionTimer = setTimeout(() => {
+        if (currentUser) {
+            logout();
+            showNotification('Session expired due to inactivity');
+        }
+    }, 24 * 60 * 60 * 1000); // 24 hours
+}
+
+// Reset timer on user activity
+['click', 'keypress', 'scroll', 'mousemove'].forEach(event => {
+    document.addEventListener(event, resetSessionTimer, { passive: true });
+});
+
+// Initialize session timer
+resetSessionTimer();
+
+// Enhanced password strength indicator
+function checkPasswordStrength(password) {
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+    if (password.match(/\d/)) strength++;
+    if (password.match(/[^a-zA-Z\d]/)) strength++;
+    return strength;
+}
+
+function updatePasswordStrength(password) {
+    const strength = checkPasswordStrength(password);
+    const strengthText = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'][strength];
+    const strengthColor = ['#f44336', '#ff9800', '#ffeb3b', '#8bc34a', '#4caf50'][strength];
+    
+    return { strength: strengthText, color: strengthColor };
+}
+
+// Enhanced email validation
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Enhanced username validation
+function validateUsername(username) {
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    return usernameRegex.test(username);
+}
+
+// Export functions for potential module usage
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        validateEmail,
+        validateUsername,
+        checkPasswordStrength,
+        updatePasswordStrength
+    };
+}
+
+// Final initialization
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Lemon Hub initialized successfully');
+    
+    // Check for any pending redirects
+    const hash = window.location.hash;
+    if (hash.startsWith('#retrieve')) {
+        // Auto-focus on password field for reset flow
+        setTimeout(() => {
+            const passwordField = document.getElementById('retrieveNewPassword');
+            if (passwordField) passwordField.focus();
+        }, 500);
+    }
+});
+
+// Performance monitoring
+const perfObserver = new PerformanceObserver((list) => {
+    list.getEntries().forEach((entry) => {
+        console.log(`${entry.name}: ${entry.duration}ms`);
+    });
+});
+
+perfObserver.observe({ entryTypes: ['measure', 'navigation'] });
+
+// Memory management
+function cleanupUnusedData() {
+    // Clean up expired tokens and verifications
+    const now = Date.now();
+    
+    Object.keys(pendingVerifications).forEach(email => {
+        if (now > pendingVerifications[email].expires) {
+            delete pendingVerifications[email];
+        }
+    });
+    
+    Object.keys(resetTokens).forEach(token => {
+        if (now > resetTokens[token].expires) {
+            delete resetTokens[token];
+        }
+    });
+    
+    saveAppData();
+}
+
+// Run cleanup every hour
+setInterval(cleanupUnusedData, 3600000);
+
+// Initial cleanup
+cleanupUnusedData();
