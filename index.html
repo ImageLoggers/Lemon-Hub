@@ -37,17 +37,8 @@
                 <p class="hero-subtitle">Your Best Script Is Here</p>
                 
                 <!-- Adsterra Ad 1 - Top Banner -->
-                <div class="ad-container">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
-                            'format' : 'iframe',
-                            'height' : 60,
-                            'width' : 468,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+                <div class="ad-container" id="ad1">
+                    <!-- Ad will be loaded here after user accepts invitation -->
                 </div>
                 
                 <div class="discord-invitation">
@@ -67,19 +58,10 @@
                         
                         <div class="invitation-footer">
                             <!-- Adsterra Ad 2 - Next to Accept Invitation Button -->
-                            <div class="ad-container ad-button">
-                                <script type="text/javascript">
-                                    atOptions = {
-                                        'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
-                                        'format' : 'iframe',
-                                        'height' : 60,
-                                        'width' : 468,
-                                        'params' : {}
-                                    };
-                                </script>
-                                <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+                            <div class="ad-container ad-button" id="ad2">
+                                <!-- Ad will be loaded here after user accepts invitation -->
                             </div>
-                            <a href="https://discord.gg/gnR4u82wkJ" target="_blank" class="accept-invite-btn">
+                            <a href="https://discord.gg/gnR4u82wkJ" target="_blank" class="accept-invite-btn" id="accept-invite-btn">
                                 <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.191.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
                                 </svg>
@@ -127,17 +109,8 @@
                     <div class="script-header">
                         <span class="script-label">Script Code</span>
                         <!-- Adsterra Ad 3 - Next to Copy Button -->
-                        <div class="ad-container ad-button">
-                            <script type="text/javascript">
-                                atOptions = {
-                                    'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
-                                    'format' : 'iframe',
-                                    'height' : 60,
-                                    'width' : 468,
-                                    'params' : {}
-                                };
-                            </script>
-                            <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+                        <div class="ad-container ad-button" id="ad3">
+                            <!-- Ad will be loaded here after user accepts invitation -->
                         </div>
                         <button class="copy-btn" onclick="copyScript()">
                             <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -154,17 +127,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 <p class="script-instructions">Copy the script above and paste it into your executor!</p>
                 
                 <!-- Adsterra Ad 4 - Bottom Banner -->
-                <div class="ad-container">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
-                            'format' : 'iframe',
-                            'height' : 60,
-                            'width' : 468,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+                <div class="ad-container" id="ad4">
+                    <!-- Ad will be loaded here after user accepts invitation -->
                 </div>
                 
                 <div class="executor-compatibility">
@@ -257,6 +221,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
 
     <script>
 // script.js
+let adsEnabled = false;
+
 function showHome() {
     document.getElementById('home-section').classList.add('active');
     document.getElementById('script-section').classList.remove('active');
@@ -413,7 +379,40 @@ function addEnhancedRipple(element, event) {
     }, 500);
 }
 
+// Function to load Adsterra ads
+function loadAds() {
+    if (!adsEnabled) return;
+    
+    const adScript = `
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+    `;
+    
+    // Load ads in all ad containers
+    const adContainers = document.querySelectorAll('.ad-container');
+    adContainers.forEach(container => {
+        container.innerHTML = adScript;
+    });
+}
+
+// Enable ads when Accept Invitation button is clicked
 document.addEventListener('DOMContentLoaded', function() {
+    const acceptBtn = document.getElementById('accept-invite-btn');
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            adsEnabled = true;
+            loadAds();
+        });
+    }
+    
     // Make sure all interactive elements can contain ripples
     const interactiveElements = [
         '.nav-btn', '.copy-btn', '.accept-invite-btn', 
