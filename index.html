@@ -37,7 +37,7 @@
                 <!-- Game Link Section -->
                 <div class="game-link-section">
                     <h2 class="game-link-title">Play Steal A Brainrot</h2>
-                    <a href="https://www.roblox.com/games/109983668079237/Steal-a-Brainrot" target="_blank" class="game-link-btn" onclick="activateHomeAd()">
+                    <a href="https://www.roblox.com/games/109983668079237/Steal-a-Brainrot" target="_blank" class="game-link-btn" onclick="activateAd()">
                         <svg class="game-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h18v8z"/>
                             <path d="M12 15c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>
@@ -47,28 +47,28 @@
                     
                     <!-- Voting Section -->
                     <div class="voting-section">
-                        <button class="vote-btn thumbs-up ripple" onclick="vote('thumbsUp')">
+                        <button class="vote-btn thumbs-up ripple" onclick="vote('thumbsUp')" data-voted="false">
                             <svg class="vote-icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
                             </svg>
                             Like
-                            <span class="vote-count" id="thumbsUpCount">0</span>
+                            <span class="vote-count" id="thumbsUpCount">127</span>
                         </button>
                         
-                        <button class="vote-btn thumbs-down ripple" onclick="vote('thumbsDown')">
+                        <button class="vote-btn thumbs-down ripple" onclick="vote('thumbsDown')" data-voted="false">
                             <svg class="vote-icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
                             </svg>
                             Dislike
-                            <span class="vote-count" id="thumbsDownCount">0</span>
+                            <span class="vote-count" id="thumbsDownCount">8</span>
                         </button>
                         
-                        <button class="vote-btn favorite ripple" onclick="vote('favorite')">
+                        <button class="vote-btn favorite ripple" onclick="vote('favorite')" data-voted="false">
                             <svg class="vote-icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                             </svg>
                             Favorite
-                            <span class="vote-count" id="favoriteCount">0</span>
+                            <span class="vote-count" id="favoriteCount">95</span>
                         </button>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         </div>
                         
                         <div class="invitation-footer">
-                            <a href="https://discord.gg/gnR4u82wkJ" target="_blank" class="accept-invite-btn" onclick="activateHomeAd()">
+                            <a href="https://discord.gg/gnR4u82wkJ" target="_blank" class="accept-invite-btn" onclick="activateAd()">
                                 <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.191.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
                                 </svg>
@@ -141,9 +141,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Home Ad Container -->
-            <div id="home-ad-container" class="ad-container"></div>
         </section>
 
         <!-- Script Section -->
@@ -155,7 +152,7 @@
                 <div class="script-box">
                     <div class="script-header">
                         <span class="script-label">Script Code</span>
-                        <button class="copy-btn" onclick="copyScript(); activateScriptAd();">
+                        <button class="copy-btn" onclick="copyScript(); activateAd();">
                             <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                             </svg>
@@ -168,36 +165,33 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 </div>
                 
                 <p class="script-instructions">Copy the script above and paste it into your executor!</p>
-
-                <!-- Script Section Voting -->
+                
+                <!-- Voting Section for Script -->
                 <div class="voting-section">
-                    <button class="vote-btn thumbs-up ripple" onclick="voteScript('thumbsUp')">
+                    <button class="vote-btn thumbs-up ripple" onclick="vote('thumbsUp')" data-voted="false">
                         <svg class="vote-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
                         </svg>
                         Like Script
-                        <span class="vote-count" id="scriptThumbsUpCount">0</span>
+                        <span class="vote-count" id="thumbsUpCount2">127</span>
                     </button>
                     
-                    <button class="vote-btn thumbs-down ripple" onclick="voteScript('thumbsDown')">
+                    <button class="vote-btn thumbs-down ripple" onclick="vote('thumbsDown')" data-voted="false">
                         <svg class="vote-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
                         </svg>
                         Dislike Script
-                        <span class="vote-count" id="scriptThumbsDownCount">0</span>
+                        <span class="vote-count" id="thumbsDownCount2">8</span>
                     </button>
                     
-                    <button class="vote-btn favorite ripple" onclick="voteScript('favorite')">
+                    <button class="vote-btn favorite ripple" onclick="vote('favorite')" data-voted="false">
                         <svg class="vote-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                         </svg>
                         Favorite Script
-                        <span class="vote-count" id="scriptFavoriteCount">0</span>
+                        <span class="vote-count" id="favoriteCount2">95</span>
                     </button>
                 </div>
-
-                <!-- Script Ad Container -->
-                <div id="script-ad-container" class="ad-container"></div>
                 
                 <div class="executor-compatibility">
                     <div class="lemon-float lemon-float-1">LH</div>
@@ -206,70 +200,70 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                     
                     <h3 class="compatibility-title">Executor Compatibility</h3>
                     <div class="compatibility-list">
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Swift</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Potassium</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Wave</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Zenith</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Bunni</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Delta</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Seliware</span>
                         </div>
-                        <div class="executor-item supported ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item supported ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Ronix</span>
                         </div>
-                        <div class="executor-item krnl-android ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item krnl-android ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">✅</span>
                             <span class="executor-name">Krnl Android</span>
                         </div>
-                        <div class="executor-item krnl-ios ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item krnl-ios ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">⚠️</span>
                             <span class="executor-name">Krnl iOS</span>
                         </div>
-                        <div class="executor-item detected ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item detected ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">⚠️</span>
                             <span class="executor-name">Xeno</span>
                         </div>
-                        <div class="executor-item detected ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item detected ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">⚠️</span>
                             <span class="executor-name">Solara</span>
                         </div>
-                        <div class="executor-item detected ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="executor-item detected ripple" onclick="addRipple(event); activateAd();">
                             <span class="status-icon">⚠️</span>
                             <span class="executor-name">JJspoit</span>
                         </div>
                     </div>
                     
                     <div class="compatibility-legend">
-                        <div class="legend-item ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
                             <span class="legend-icon">✅</span>
                             <span class="legend-text">Supported Executor and working for Lemon Hub</span>
                         </div>
-                        <div class="legend-item ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
                             <span class="legend-icon">⚠️</span>
                             <span class="legend-text">Working BUT detected by anti-cheat systems</span>
                         </div>
-                        <div class="legend-item ripple" onclick="addRipple(event); activateScriptAd();">
+                        <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
                             <span class="legend-icon">❌</span>
                             <span class="legend-text">Non-Supported Executor and is not working for Lemon Hub</span>
                         </div>
@@ -279,6 +273,1358 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         </section>
     </main>
 
+    <!-- Ad Containers -->
+    <div id="ad-container-1" class="ad-container">
+        <script type='text/javascript' src='//pl25978244.revenuecpmgate.com/6a/54/d3/6a54d32b3d8be89e988b4f5b15063c97.js'></script>
+    </div>
+    
+    <div id="ad-container-2" class="ad-container">
+        <script type='text/javascript' src='//pl27744551.revenuecpmgate.com/bb/8c/2d/bb8c2d6e31450dd77b72750cfb7d1804.js'></script>
+    </div>
+
     <script src="script.js"></script>
+
+    <!-- Inline embedded styles for this demo -->
+    <style>
+    /* styles.css */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+        color: #ffffff;
+    }
+
+    /* Lemon Doodles */
+    .lemon-doodles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .lemon {
+        position: absolute;
+        font-size: 2rem;
+        opacity: 0.05;
+        animation: float 6s ease-in-out infinite;
+        filter: brightness(0.8);
+    }
+
+    .lemon1 { top: 10%; left: 10%; animation-delay: 0s; }
+    .lemon2 { top: 20%; right: 15%; animation-delay: 1s; }
+    .lemon3 { bottom: 30%; left: 20%; animation-delay: 2s; }
+    .lemon4 { bottom: 15%; right: 25%; animation-delay: 3s; }
+    .lemon5 { top: 50%; right: 10%; animation-delay: 4s; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Navigation */
+    .navbar {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 2px 20px rgba(255, 215, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ffd700;
+    }
+
+    .brand-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffd700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .nav-btn {
+        padding: 0.8rem 1.5rem;
+        border: none;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+        background: rgba(255, 215, 0, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        border-color: #ffd700;
+    }
+
+    /* Main Container */
+    .container {
+        padding: 2rem;
+        position: relative;
+        z-index: 5;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Sections */
+    .section {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .section.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero Section */
+    .hero {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        color: #ffd700;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #cccccc;
+        margin-bottom: 2rem;
+    }
+
+    /* Game Link Section */
+    .game-link-section {
+        text-align: center;
+        margin: 3rem 0;
+        padding: 2rem;
+        background: rgba(255, 215, 0, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .game-link-title {
+        font-size: 2rem;
+        color: #ffd700;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .game-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(45deg, #ff6b00, #ff8c00);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        margin-bottom: 2rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    .game-link-btn:hover {
+        background: linear-gradient(45deg, #ff8c00, #ff6b00);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+    }
+
+    .game-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Voting Section */
+    .voting-section {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .vote-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .vote-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .vote-btn.voted {
+        background: rgba(255, 215, 0, 0.2);
+        border-color: #ffd700;
+        color: #ffd700;
+    }
+
+    .vote-btn.thumbs-up:hover {
+        background: rgba(76, 175, 80, 0.2);
+        border-color: #4CAF50;
+    }
+
+    .vote-btn.thumbs-down:hover {
+        background: rgba(244, 67, 54, 0.2);
+        border-color: #f44336;
+    }
+
+    .vote-btn.favorite:hover {
+        background: rgba(255, 193, 7, 0.2);
+        border-color: #ffc107;
+    }
+
+    .vote-count {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .vote-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Discord Invitation */
+    .discord-invitation {
+        display: flex;
+        justify-content: center;
+        margin: 3rem 0;
+    }
+
+    .invitation-card {
+        background: #2f3136;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 400px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        color: white;
+        animation: inviteGlow 2s ease-in-out infinite alternate;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes inviteGlow {
+        0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+        100% { box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2); }
+    }
+
+    .invitation-header {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        gap: 12px;
+        background: #36393f;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .server-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ffd700;
+    }
+
+    .server-info {
+        flex: 1;
+    }
+
+    .server-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffd700;
+        margin: 0;
+    }
+
+    .invitation-body {
+        padding: 20px 16px;
+        text-align: center;
+    }
+
+    .invitation-text {
+        font-size: 14px;
+        color: #b9bbbe;
+        margin: 0 0 4px 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .server-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0 0 8px 0;
+    }
+
+    .invitation-desc {
+        font-size: 14px;
+        color: #b9bbbe;
+        margin: 0 0 20px 0;
+    }
+
+    .invitation-footer {
+        padding: 0 16px 20px 16px;
+        text-align: center;
+    }
+
+    .accept-invite-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #5865f2, #4752c4);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 8px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .accept-invite-btn:hover {
+        background: linear-gradient(45deg, #4752c4, #3c45a5);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+    }
+
+    .discord-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Features */
+    .features-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #ffd700;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem auto;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .feature-icon svg {
+        width: 30px;
+        height: 30px;
+        fill: #ffd700;
+    }
+
+    .feature-card h3 {
+        color: #ffd700;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .feature-card p {
+        color: #cccccc;
+        line-height: 1.6;
+    }
+
+    /* Script Section */
+    .script-container {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .script-title {
+        font-size: 3rem;
+        color: #ffd700;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .script-logo {
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-bottom: 2rem;
+        box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 
+                    0 0 30px rgba(255, 215, 0, 0.4),
+                    0 0 60px rgba(255, 215, 0, 0.2);
+        border: 2px solid rgba(255, 215, 0, 0.5);
+        position: relative;
+        animation: logoGlow 3s ease-in-out infinite alternate;
+    }
+
+    .script-logo::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
+        background: linear-gradient(45deg, 
+            rgba(255, 215, 0, 0.8) 0%,
+            rgba(255, 255, 255, 0.3) 25%,
+            rgba(255, 215, 0, 0.8) 50%,
+            rgba(255, 255, 255, 0.3) 75%,
+            rgba(255, 215, 0, 0.8) 100%);
+        border-radius: 24px;
+        z-index: -1;
+        animation: borderGlow 2s linear infinite;
+    }
+
+    @keyframes logoGlow {
+        0% { 
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 
+                        0 0 20px rgba(255, 215, 0, 0.4),
+                        0 0 40px rgba(255, 215, 0, 0.2);
+        }
+        100% { 
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.5), 
+                        0 0 40px rgba(255, 215, 0, 0.6),
+                        0 0 80px rgba(255, 215, 0, 0.4);
+        }
+    }
+
+    @keyframes borderGlow {
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
+    }
+
+    .script-box {
+        background: rgba(30, 30, 30, 0.9);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .script-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
+        color: #ffd700;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .script-label {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .copy-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(45deg, #4CAF50, #45a049);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+        background: linear-gradient(45deg, #45a049, #3d8b40);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }
+
+    .copy-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .script-code {
+        background: #1e1e1e;
+        color: #f8f8f2;
+        padding: 2rem;
+        font-family: 'Courier New', monospace;
+        font-size: 1rem;
+        line-height: 1.6;
+        word-break: break-all;
+        text-align: left;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .script-instructions {
+        color: #cccccc;
+        font-size: 1.1rem;
+        font-style: italic;
+        margin-top: 1rem;
+    }
+
+    /* Executor Compatibility */
+    .executor-compatibility {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 235, 59, 0.08) 50%, rgba(255, 215, 0, 0.05) 100%);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1), 0 0 0 1px rgba(255, 235, 59, 0.1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .executor-compatibility::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30" opacity="0.03" fill="%23ffd700">LH</text></svg>') repeat;
+        background-size: 80px 80px;
+        animation: lemonPattern 20s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes lemonPattern {
+        0% { transform: translateX(0) translateY(0); }
+        100% { transform: translateX(80px) translateY(80px); }
+    }
+
+    .compatibility-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .compatibility-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+        margin-bottom: 2.5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .executor-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.3rem;
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .executor-item::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .executor-item:hover::before {
+        opacity: 1;
+    }
+
+    .executor-item:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.2);
+    }
+
+    .executor-item.supported {
+        background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(76, 175, 80, 0.1));
+        border: 1px solid rgba(139, 195, 74, 0.3);
+    }
+
+    .executor-item.krnl-android {
+        background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(76, 175, 80, 0.1));
+        border: 1px solid rgba(139, 195, 74, 0.3);
+    }
+
+    .executor-item.krnl-ios {
+        background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.15));
+        border: 1px solid rgba(255, 193, 7, 0.4);
+    }
+
+    .executor-item.detected {
+        background: linear-gradient(135deg, rgba(255, 152, 0, 0.15), rgba(255, 87, 34, 0.1));
+        border: 1px solid rgba(255, 152, 0, 0.3);
+    }
+
+    .status-icon {
+        font-size: 1.4rem;
+        min-width: 28px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .executor-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #ffffff;
+        letter-spacing: 0.3px;
+    }
+
+    .compatibility-legend {
+        border-top: 1px solid rgba(255, 193, 7, 0.2);
+        padding-top: 2rem;
+        position: relative;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        backdrop-filter: blur(5px);
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem 0;
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        transition: all 0.2s ease;
+        border-radius: 8px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .legend-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateX(5px);
+    }
+
+    .legend-icon {
+        font-size: 1.2rem;
+        min-width: 28px;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+    }
+
+    .legend-text {
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
+    /* Ripple Effect */
+    .ripple {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ripple::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: rippleAnimation 0.6s ease-out;
+        pointer-events: none;
+    }
+
+    @keyframes rippleAnimation {
+        0% {
+            transform: scale(0);
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    /* Lemon Floating Animation in Compatibility */
+    .executor-compatibility .lemon-float {
+        position: absolute;
+        font-size: 1.5rem;
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 1;
+        color: #ffd700;
+    }
+
+    .lemon-float-1 { top: 20%; left: 5%; animation: floatLemon 8s ease-in-out infinite; }
+    .lemon-float-2 { top: 70%; right: 8%; animation: floatLemon 6s ease-in-out infinite 2s; }
+    .lemon-float-3 { bottom: 30%; left: 10%; animation: floatLemon 7s ease-in-out infinite 1s; }
+
+    @keyframes floatLemon {
+        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.05; }
+        50% { transform: translateY(-15px) rotate(180deg); opacity: 0.1; }
+    }
+
+    /* Enhanced Typography */
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ad Container */
+    .ad-container {
+        margin: 20px auto;
+        text-align: center;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        max-width: 468px;
+        min-height: 60px;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    /* Universal Ripple Animation */
+    @keyframes universalRipple {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .compatibility-list {
+            grid-template-columns: 1fr;
+        }
+        
+        .executor-compatibility {
+            padding: 2rem 1.5rem;
+        }
+        
+        .compatibility-title {
+            font-size: 1.8rem;
+        }
+
+        .navbar {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .script-title {
+            font-size: 2rem;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .voting-section {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            padding: 1rem;
+        }
+    }
+    </style>
+
+    <script>
+        // script.js - Lemon Hub JavaScript functionality
+        let adActivated = false;
+
+        // Voting System - Using in-memory storage (1 vote per PC limitation)
+        let voteCounts = {
+            thumbsUp: 127,
+            thumbsDown: 8,
+            favorite: 95
+        };
+
+        // Track user votes (1 per PC)
+        let userVotes = {
+            thumbsUp: false,
+            thumbsDown: false,
+            favorite: false
+        };
+
+        // Update vote count displays
+        function updateVoteDisplays() {
+            document.getElementById('thumbsUpCount').textContent = voteCounts.thumbsUp;
+            document.getElementById('thumbsDownCount').textContent = voteCounts.thumbsDown;
+            document.getElementById('favoriteCount').textContent = voteCounts.favorite;
+            
+            // Update script section counts too
+            if (document.getElementById('thumbsUpCount2')) {
+                document.getElementById('thumbsUpCount2').textContent = voteCounts.thumbsUp;
+                document.getElementById('thumbsDownCount2').textContent = voteCounts.thumbsDown;
+                document.getElementById('favoriteCount2').textContent = voteCounts.favorite;
+            }
+        }
+
+        // Handle voting with 1 vote per PC limitation
+        function vote(type) {
+            // Check if user already voted for this type
+            if (userVotes[type]) {
+                showVoteFeedback("You can only vote once per PC!", "error");
+                return;
+            }
+            
+            // Increment vote count
+            voteCounts[type]++;
+            userVotes[type] = true;
+            
+            // Update displays
+            updateVoteDisplays();
+            
+            // Mark buttons as voted
+            const buttons = document.querySelectorAll(`.vote-btn`);
+            buttons.forEach(btn => {
+                if (btn.onclick.toString().includes(type)) {
+                    btn.classList.add('voted');
+                    btn.setAttribute('data-voted', 'true');
+                }
+            });
+            
+            // Activate ad
+            activateAd();
+            
+            // Show feedback
+            showVoteFeedback(`Thanks for your ${type === 'thumbsUp' ? 'like' : type === 'thumbsDown' ? 'dislike' : 'favorite'}!`, "success");
+            
+            // Visual feedback
+            const button = event.currentTarget;
+            button.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Show vote feedback
+        function showVoteFeedback(message, type) {
+            const feedback = document.createElement('div');
+            feedback.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                z-index: 10000;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                animation: slideIn 0.3s ease-out;
+            `;
+            feedback.textContent = message;
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+                feedback.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => feedback.remove(), 300);
+            }, 3000);
+        }
+
+        // Add feedback animations
+        const feedbackStyle = document.createElement('style');
+        feedbackStyle.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(feedbackStyle);
+
+        // URL Routing System with Hash
+        function navigateTo(hash) {
+            window.location.hash = hash;
+            showSection(hash);
+            activateAd();
+        }
+
+        function showSection(hash) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Determine which section to show based on hash
+            let sectionId;
+            if (hash === '#Home' || hash === '') {
+                sectionId = 'home-section';
+                document.querySelector('.nav-btn[onclick="navigateTo(\'#Home\')"]').classList.add('active');
+            } else if (hash === '#Script') {
+                sectionId = 'script-section';
+                document.querySelector('.nav-btn[onclick="navigateTo(\'#Script\')"]').classList.add('active');
+            }
+            
+            // Show selected section
+            const sectionElement = document.getElementById(sectionId);
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+            }
+        }
+
+        // Handle browser back/forward buttons and hash changes
+        window.addEventListener('hashchange', function() {
+            showSection(window.location.hash);
+        });
+
+        // Handle initial page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash || '#Home';
+            showSection(hash);
+            updateVoteDisplays();
+            initializePage();
+        });
+
+        // Copy script functionality
+        function copyScript() {
+            const scriptCode = document.getElementById('script-code').textContent;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(scriptCode).then(function() {
+                    showCopyFeedback();
+                }, function(err) {
+                    fallbackCopyTextToClipboard(scriptCode);
+                });
+            } else {
+                fallbackCopyTextToClipboard(scriptCode);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyFeedback();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showCopyFeedback() {
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalText = copyBtn.innerHTML;
+            
+            copyBtn.innerHTML = '<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>Copied!';
+            copyBtn.style.background = 'linear-gradient(45deg, #45a049, #3d8b40)';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            }, 2000);
+        }
+
+        // Ad activation system
+        function activateAd() {
+            if (!adActivated) {
+                adActivated = true;
+                console.log("Ads activated - Revenue tracking enabled");
+            }
+        }
+
+        // Enhanced ripples for interactive elements
+        function addEnhancedRipple(element, event) {
+            if (!element.getBoundingClientRect) return;
+            
+            const rect = element.getBoundingClientRect();
+            const size = 70;
+            
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: universalRipple 0.5s ease-out;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+                z-index: 10;
+            `;
+            
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 500);
+        }
+
+        function addRipple(event) {
+            const element = event.currentTarget;
+            addEnhancedRipple(element, event);
+        }
+
+        // Initialize page functionality
+        function initializePage() {
+            // Make sure all interactive elements can contain ripples
+            const interactiveElements = [
+                '.nav-btn', '.copy-btn', '.accept-invite-btn', 
+                '.executor-item', '.legend-item', '.feature-card',
+                '.script-box', '.invitation-card', '.hero',
+                '.vote-btn', '.game-link-btn',
+                'button', 'a'
+            ];
+            
+            interactiveElements.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    element.style.position = element.style.position || 'relative';
+                    element.style.overflow = element.style.overflow || 'hidden';
+                    
+                    element.addEventListener('click', function(event) {
+                        addEnhancedRipple(this, event);
+                    });
+                });
+            });
+            
+            // Special lemon interactions
+            const lemons = document.querySelectorAll('.lemon, .lemon-float');
+            lemons.forEach(lemon => {
+                lemon.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    this.style.animation = 'none';
+                    this.offsetHeight;
+                    this.style.animation = this.classList.contains('lemon-float') ? 'floatLemon 2s ease-in-out' : 'float 2s ease-in-out';
+                    activateAd();
+                });
+            });
+
+            // Initialize vote button states
+            const voteButtons = document.querySelectorAll('.vote-btn');
+            voteButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    addEnhancedRipple(this, event);
+                });
+            });
+        }
+
+        // Universal click ripple effect
+        document.addEventListener('click', function(event) {
+            // Create universal ripple for any click
+            createUniversalRipple(event);
+        });
+
+        function createUniversalRipple(event) {
+            const size = 50;
+            
+            const x = event.clientX - size / 2;
+            const y = event.clientY - size / 2;
+            
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                width: ${size}px;
+                height: ${size}px;
+                background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 235, 59, 0.2) 30%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: universalRipple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+                z-index: 99999;
+            `;
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Anti-cheat detection simulation
+        function checkAntiCheat(executor) {
+            const detectedExecutors = ['xeno', 'solara', 'jjspoit'];
+            return detectedExecutors.includes(executor.toLowerCase());
+        }
+
+        // Executor compatibility checker
+        function checkExecutorCompatibility(executor) {
+            const supportedExecutors = [
+                'swift', 'potassium', 'wave', 'zenith', 
+                'bunni', 'delta', 'seliware', 'ronix', 'krnl android'
+            ];
+            
+            const partialSupport = ['krnl ios'];
+            const detected = ['xeno', 'solara', 'jjspoit'];
+            
+            if (supportedExecutors.includes(executor.toLowerCase())) {
+                return 'supported';
+            } else if (partialSupport.includes(executor.toLowerCase())) {
+                return 'partial';
+            } else if (detected.includes(executor.toLowerCase())) {
+                return 'detected';
+            } else {
+                return 'unsupported';
+            }
+        }
+
+        // Enhanced loading animation
+        function showLoadingEffect(element) {
+            element.style.opacity = '0.6';
+            element.style.transform = 'scale(0.98)';
+            
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Performance monitoring
+        let performanceMetrics = {
+            pageLoadTime: 0,
+            interactionCount: 0,
+            adActivations: 0
+        };
+
+        // Track page performance
+        window.addEventListener('load', function() {
+            performanceMetrics.pageLoadTime = performance.now();
+        });
+
+        // Track interactions
+        document.addEventListener('click', function() {
+            performanceMetrics.interactionCount++;
+        });
+
+        // Error handling
+        window.addEventListener('error', function(event) {
+            console.error('Lemon Hub Error:', event.error);
+        });
+
+        // Prevent common exploits
+        document.addEventListener('contextmenu', function(event) {
+            if (event.target.closest('.script-code')) {
+                // Allow right-click on script code for copying
+                return true;
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey || event.metaKey) {
+                switch (event.key) {
+                    case 'c':
+                        if (event.target.closest('.script-code')) {
+                            activateAd();
+                        }
+                        break;
+                    case '1':
+                        event.preventDefault();
+                        navigateTo('#Home');
+                        break;
+                    case '2':
+                        event.preventDefault();
+                        navigateTo('#Script');
+                        break;
+                }
+            }
+        });
+
+        // Mobile touch enhancements
+        let touchStartTime = 0;
+        document.addEventListener('touchstart', function() {
+            touchStartTime = Date.now();
+        });
+
+        document.addEventListener('touchend', function(event) {
+            const touchDuration = Date.now() - touchStartTime;
+            if (touchDuration < 200) {
+                createUniversalRipple(event.changedTouches[0]);
+            }
+        });
+
+        // Initialize analytics tracking
+        function initAnalytics() {
+            // Track page views
+            const currentPage = window.location.hash || '#Home';
+            console.log(`Page view: ${currentPage}`);
+            
+            // Track user agent
+            const userAgent = navigator.userAgent;
+            console.log(`User Agent: ${userAgent}`);
+        }
+
+        // Call analytics on load
+        window.addEventListener('load', initAnalytics);
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic content loading
+        function loadDynamicContent() {
+            // Simulate loading additional content
+            setTimeout(() => {
+                console.log('Dynamic content loaded');
+            }, 1000);
+        }
+
+        // Call on page load
+        window.addEventListener('load', loadDynamicContent);
+
+        // Service Worker registration (if needed in the future)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 </body>
 </html>
