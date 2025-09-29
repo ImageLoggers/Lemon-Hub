@@ -970,12 +970,12 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
             
             // Determine which section to show based on path
             let sectionId;
-            if (path === '/Home' || path === '/') {
+            if (path === '/#Home' || path === '/') {
                 sectionId = 'home-section';
-                document.querySelector('.nav-btn[onclick="navigateTo(\'/Home\')"]').classList.add('active');
-            } else if (path === '/Script') {
+                document.querySelector('.nav-btn[onclick="navigateTo(\'/#Home\')"]').classList.add('active');
+            } else if (path === '/#Script') {
                 sectionId = 'script-section';
-                document.querySelector('.nav-btn[onclick="navigateTo(\'/Script\')"]').classList.add('active');
+                document.querySelector('.nav-btn[onclick="navigateTo(\'/#Script\')"]').classList.add('active');
             }
             
             // Show selected section
@@ -987,7 +987,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
 
         // Handle browser back/forward buttons
         window.addEventListener('popstate', function(event) {
-            const path = event.state ? event.state.path : '/Home';
+            const path = event.state ? event.state.path : '/#Home';
             showSection(path);
         });
 
@@ -997,8 +997,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
             
             // If root path, redirect to /Home
             if (currentPath === '/' || currentPath === '') {
-                window.history.replaceState({ path: '/Home' }, '', '/Home');
-                showSection('/Home');
+                window.history.replaceState({ path: '/#Home' }, '', '/#Home');
+                showSection('/#Home');
             } else {
                 showSection(currentPath);
             }
