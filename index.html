@@ -648,6 +648,16 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Ad Container */
+    .ad-container {
+        margin: 20px auto;
+        text-align: center;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        max-width: 468px;
+    }
+
     /* Responsive Design for Compatibility */
     @media (max-width: 768px) {
         .compatibility-list {
@@ -890,34 +900,21 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         </section>
     </main>
 
-    <!-- Adsterra injection logic -->
-    <script>
-      function showAd() {
-        let adContainer = document.createElement("div");
-        adContainer.style.margin = "10px auto";
-        adContainer.style.textAlign = "center";
-        document.body.appendChild(adContainer);
+    <!-- Ad Container -->
+    <div id="ad-container" class="ad-container"></div>
 
+    <!-- Adsterra Script -->
+    <script type="text/javascript">
         atOptions = {
-          'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
-          'format' : 'iframe',
-          'height' : 60,
-          'width' : 468,
-          'params' : {}
+            'key' : '4cf9aae2f24edf231dd9fa8f9881b5ae',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
         };
-        let s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.src = '//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js';
-        adContainer.appendChild(s);
-      }
-
-      function copyScript() {
-        const code = document.getElementById("script-code").innerText;
-        navigator.clipboard.writeText(code).then(() => {
-          alert("Copied to clipboard!");
-        });
-      }
     </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/4cf9aae2f24edf231dd9fa8f9881b5ae/invoke.js"></script>
+
     <script>
         // script.js
         function showHome() {
@@ -985,6 +982,13 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 copyBtn.innerHTML = originalText;
                 copyBtn.style.background = '#4CAF50';
             }, 2000);
+        }
+
+        function showAd() {
+            // The Adsterra script will automatically load the ad
+            // We just need to make sure the container is visible
+            const adContainer = document.getElementById('ad-container');
+            adContainer.style.display = 'block';
         }
 
         function createUniversalRipple(event) {
