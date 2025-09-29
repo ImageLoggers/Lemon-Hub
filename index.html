@@ -32,10 +32,52 @@
                     <input type="password" id="loginPassword" placeholder="Password" required>
                 </div>
                 <button type="submit" class="auth-btn primary-btn">Login</button>
+                <div class="auth-links">
+                    <a href="#ForgotPassword" class="forgot-password">Forgot Password?</a>
+                </div>
             </form>
             <p class="auth-switch">Don't have an account? <a href="#Signup" id="showSignup">Sign up</a></p>
         </div>
     </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
+                <h2>Reset Password</h2>
+            </div>
+            <form id="forgotPasswordForm" class="auth-form">
+                <div class="form-group">
+                    <input type="email" id="forgotEmail" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="auth-btn primary-btn">Send Reset Link</button>
+            </form>
+            <p class="auth-switch">Remember your password? <a href="#Login" id="showLoginFromForgot">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Retrieve Password Section -->
+    <section id="retrieve-section" class="section">
+        <div class="retrieve-container">
+            <div class="retrieve-header">
+                <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
+                <h1>Reset Your Password</h1>
+                <p>Enter your new password below</p>
+            </div>
+            <form id="retrievePasswordForm" class="auth-form">
+                <div class="form-group">
+                    <input type="password" id="retrieveNewPassword" placeholder="New Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="retrieveConfirmPassword" placeholder="Confirm New Password" required>
+                </div>
+                <button type="submit" class="auth-btn primary-btn">Change Password</button>
+            </form>
+            <p class="auth-switch">Back to <a href="#Login">Login</a></p>
+        </div>
+    </section>
 
     <!-- Signup Modal -->
     <div id="signupModal" class="modal">
@@ -61,6 +103,28 @@
         </div>
     </div>
 
+    <!-- Verification Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
+                <h2>Verify Your Email</h2>
+                <p>We sent a verification code to your email</p>
+            </div>
+            <form id="verificationForm" class="auth-form">
+                <div class="form-group">
+                    <input type="text" id="verificationCode" placeholder="Enter verification code" required maxlength="6">
+                </div>
+                <button type="submit" class="auth-btn primary-btn">Verify Account</button>
+            </form>
+            <div class="verification-actions">
+                <button type="button" class="resend-btn" onclick="resendVerificationCode()">Resend Code</button>
+                <p class="timer" id="resendTimer">Resend available in <span id="timer">60</span>s</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Profile Dropdown -->
     <div id="profileDropdown" class="profile-dropdown">
         <div class="dropdown-item" onclick="navigateTo('#Profile')">
@@ -81,6 +145,28 @@
                 <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
             </svg>
             Log out
+        </div>
+    </div>
+
+    <!-- Avatar Crop Modal -->
+    <div id="cropModal" class="modal">
+        <div class="modal-content crop-modal">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Crop Profile Picture</h2>
+            </div>
+            <div class="crop-container">
+                <div id="cropArea" class="crop-area">
+                    <img id="cropImage" src="" alt="Crop preview">
+                </div>
+                <div class="crop-controls">
+                    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="1">
+                    <div class="crop-actions">
+                        <button type="button" class="crop-btn secondary" onclick="hideCropModal()">Cancel</button>
+                        <button type="button" class="crop-btn primary" onclick="saveCroppedAvatar()">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
