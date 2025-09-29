@@ -305,10 +305,21 @@
     }
 
     .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: #ffd700;
-        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem auto;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .feature-icon svg {
+        width: 30px;
+        height: 30px;
+        fill: #ffd700;
     }
 
     .feature-card h3 {
@@ -741,8 +752,8 @@
             <span class="brand-name">Lemon Hub</span>
         </div>
         <div class="nav-menu">
-            <button class="nav-btn active" onclick="navigateTo('Home')">Home</button>
-            <button class="nav-btn" onclick="navigateTo('Script')">Script</button>
+            <button class="nav-btn active" onclick="navigateTo('/Home')">Home</button>
+            <button class="nav-btn" onclick="navigateTo('/Script')">Script</button>
         </div>
     </nav>
 
@@ -784,22 +795,38 @@
                 <h2 class="features-title">Features</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13 3v10h8V3h-8zM3 21h8v-6H3v6zM3 11h8V3H3v8z"/>
+                            </svg>
+                        </div>
                         <h3>Advanced Steal Mechanics</h3>
                         <p>Premium stealing system with brainrot integration for maximum efficiency</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🔄</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
                         <h3>Auto Server Joiner</h3>
                         <p>Automatically join servers with brainrot features - contact owner for purchase</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                            </svg>
+                        </div>
                         <h3>Advanced Desync</h3>
                         <p>Premium desync system optimized for stealing operations</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">✨</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 2v11h3v9l7-12h-4l4-8H7z"/>
+                            </svg>
+                        </div>
                         <h3>Premium Features</h3>
                         <p>Exclusive tools and utilities for enhanced gameplay experience</p>
                     </div>
@@ -918,19 +945,19 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         let adLoaded = false;
 
         // URL Routing System
-        function navigateTo(section) {
+        function navigateTo(path) {
             // Update URL without page reload
-            const newUrl = `${window.location.origin}${window.location.pathname}#${section}`;
-            window.history.pushState({ section }, '', newUrl);
+            const newUrl = `${window.location.origin}${path}`;
+            window.history.pushState({ path }, '', newUrl);
             
             // Show the selected section
-            showSection(section);
+            showSection(path);
             
             // Activate ad
             activateAd();
         }
 
-        function showSection(section) {
+        function showSection(path) {
             // Hide all sections
             document.querySelectorAll('.section').forEach(sec => {
                 sec.classList.remove('active');
@@ -941,24 +968,40 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 btn.classList.remove('active');
             });
             
-            // Show selected section and activate corresponding button
-            const sectionElement = document.getElementById(`${section.toLowerCase()}-section`);
+            // Determine which section to show based on path
+            let sectionId;
+            if (path === '/Home' || path === '/') {
+                sectionId = 'home-section';
+                document.querySelector('.nav-btn[onclick="navigateTo(\'/Home\')"]').classList.add('active');
+            } else if (path === '/Script') {
+                sectionId = 'script-section';
+                document.querySelector('.nav-btn[onclick="navigateTo(\'/Script\')"]').classList.add('active');
+            }
+            
+            // Show selected section
+            const sectionElement = document.getElementById(sectionId);
             if (sectionElement) {
                 sectionElement.classList.add('active');
-                document.querySelector(`.nav-btn[onclick="navigateTo('${section}')"]`).classList.add('active');
             }
         }
 
         // Handle browser back/forward buttons
         window.addEventListener('popstate', function(event) {
-            const section = event.state ? event.state.section : 'Home';
-            showSection(section);
+            const path = event.state ? event.state.path : '/Home';
+            showSection(path);
         });
 
-        // Handle initial page load and URL hash
+        // Handle initial page load and URL
         window.addEventListener('DOMContentLoaded', function() {
-            const hash = window.location.hash.replace('#', '') || 'Home';
-            showSection(hash);
+            const currentPath = window.location.pathname;
+            
+            // If root path, redirect to /Home
+            if (currentPath === '/' || currentPath === '') {
+                window.history.replaceState({ path: '/Home' }, '', '/Home');
+                showSection('/Home');
+            } else {
+                showSection(currentPath);
+            }
             
             // Initialize other functionality
             initializePage();
