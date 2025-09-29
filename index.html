@@ -109,6 +109,91 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 </div>
                 
                 <p class="script-instructions">Copy the script above and paste it into your executor!</p>
+                
+                <div class="executor-compatibility">
+                    <div class="lemon-float lemon-float-1">🍋</div>
+                    <div class="lemon-float lemon-float-2">🍋</div>
+                    <div class="lemon-float lemon-float-3">🍋</div>
+                    
+                    <h3 class="compatibility-title">Executor Compatibility</h3>
+                    <div class="compatibility-list">
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Swift</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Potassium</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Wave</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Zenith</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Bunni</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Delta</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Seliware</span>
+                        </div>
+                        <div class="executor-item supported ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Ronix</span>
+                        </div>
+                        <div class="executor-item krnl-android ripple" onclick="addRipple(event)">
+                            <span class="status-icon">✅</span>
+                            <span class="executor-name">Krnl Android</span>
+                        </div>
+                        <div class="executor-item krnl-ios ripple" onclick="addRipple(event)">
+                            <span class="status-icon">☢️⚠️</span>
+                            <span class="executor-name">Krnl iOS</span>
+                        </div>
+                        <div class="executor-item detected ripple" onclick="addRipple(event)">
+                            <span class="status-icon">☢️</span>
+                            <span class="executor-name">Xeno</span>
+                        </div>
+                        <div class="executor-item detected ripple" onclick="addRipple(event)">
+                            <span class="status-icon">☢️</span>
+                            <span class="executor-name">Solara</span>
+                        </div>
+                        <div class="executor-item detected ripple" onclick="addRipple(event)">
+                            <span class="status-icon">☢️</span>
+                            <span class="executor-name">JJspoit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="compatibility-legend">
+                        <div class="legend-item ripple" onclick="addRipple(event)">
+                            <span class="legend-icon">✅</span>
+                            <span class="legend-text">Supported Executor and working for Lemon Hub</span>
+                        </div>
+                        <div class="legend-item ripple" onclick="addRipple(event)">
+                            <span class="legend-icon">☢️</span>
+                            <span class="legend-text">Working BUT detected by Steal A brainrot and Roblox</span>
+                        </div>
+                        <div class="legend-item ripple" onclick="addRipple(event)">
+                            <span class="legend-icon">🛑</span>
+                            <span class="legend-text">Working BUT detected by roblox</span>
+                        </div>
+                        <div class="legend-item ripple" onclick="addRipple(event)">
+                            <span class="legend-icon">⚠️</span>
+                            <span class="legend-text">Some Issues with the executor for LemonHub</span>
+                        </div>
+                        <div class="legend-item ripple" onclick="addRipple(event)">
+                            <span class="legend-icon">❌</span>
+                            <span class="legend-text">Non-Supported Executor and is not working for Lemon Hub</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -425,11 +510,54 @@ body {
 }
 
 .script-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
     object-fit: cover;
     margin-bottom: 2rem;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 
+                0 0 20px rgba(255, 215, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+.script-logo::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background: linear-gradient(45deg, 
+        rgba(255, 215, 0, 0.8) 0%,
+        rgba(255, 255, 255, 0.6) 25%,
+        rgba(255, 215, 0, 0.8) 50%,
+        rgba(255, 255, 255, 0.6) 75%,
+        rgba(255, 215, 0, 0.8) 100%);
+    border-radius: 24px;
+    z-index: -1;
+    animation: borderGlow 2s linear infinite;
+}
+
+@keyframes logoGlow {
+    0% { 
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 
+                    0 0 20px rgba(255, 215, 0, 0.4),
+                    0 0 40px rgba(255, 215, 0, 0.2);
+    }
+    100% { 
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5), 
+                    0 0 30px rgba(255, 215, 0, 0.6),
+                    0 0 60px rgba(255, 215, 0, 0.4);
+    }
+}
+
+@keyframes borderGlow {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
 }
 
 .script-box {
@@ -493,7 +621,255 @@ body {
     font-style: italic;
 }
 
-/* Responsive Design */
+/* Executor Compatibility */
+.executor-compatibility {
+    background: linear-gradient(135deg, rgba(255, 243, 160, 0.95) 0%, rgba(255, 235, 59, 0.9) 50%, rgba(255, 215, 0, 0.85) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.2), 0 0 0 1px rgba(255, 235, 59, 0.3);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.executor-compatibility::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30" opacity="0.05">🍋</text></svg>') repeat;
+    background-size: 80px 80px;
+    animation: lemonPattern 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes lemonPattern {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(80px) translateY(80px); }
+}
+
+.compatibility-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #f57f17, #ff8f00, #ffa000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.compatibility-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.executor-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.3rem;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.executor-item::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.executor-item:hover::before {
+    opacity: 1;
+}
+
+.executor-item:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+}
+
+.executor-item.supported {
+    background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(76, 175, 80, 0.15));
+    border: 2px solid rgba(139, 195, 74, 0.4);
+    box-shadow: 0 4px 15px rgba(139, 195, 74, 0.1);
+}
+
+.executor-item.krnl-android {
+    background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(76, 175, 80, 0.15));
+    border: 2px solid rgba(139, 195, 74, 0.4);
+    box-shadow: 0 4px 15px rgba(139, 195, 74, 0.1);
+}
+
+.executor-item.krnl-ios {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 152, 0, 0.2));
+    border: 2px solid rgba(255, 193, 7, 0.5);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15);
+}
+
+.executor-item.detected {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 87, 34, 0.15));
+    border: 2px solid rgba(255, 152, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.1);
+}
+
+.status-icon {
+    font-size: 1.4rem;
+    min-width: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.executor-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2e2e2e;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    letter-spacing: 0.3px;
+}
+
+.compatibility-legend {
+    border-top: 2px solid rgba(255, 193, 7, 0.3);
+    padding-top: 2rem;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.legend-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.legend-icon {
+    font-size: 1.2rem;
+    min-width: 28px;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+.legend-text {
+    color: #2e2e2e;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+
+/* Ripple Effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleAnimation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Lemon Floating Animation in Compatibility */
+.executor-compatibility .lemon-float {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.lemon-float-1 { top: 20%; left: 5%; animation: floatLemon 8s ease-in-out infinite; }
+.lemon-float-2 { top: 70%; right: 8%; animation: floatLemon 6s ease-in-out infinite 2s; }
+.lemon-float-3 { bottom: 30%; left: 10%; animation: floatLemon 7s ease-in-out infinite 1s; }
+
+@keyframes floatLemon {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
+    50% { transform: translateY(-15px) rotate(180deg); opacity: 0.2; }
+}
+
+/* Enhanced Typography */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive Design for Compatibility */
+@media (max-width: 768px) {
+    .compatibility-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .executor-compatibility {
+        padding: 2rem 1.5rem;
+    }
+    
+    .compatibility-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Responsive Design for Compatibility */
+@media (max-width: 768px) {
+    .compatibility-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .executor-compatibility {
+        padding: 1.5rem;
+    }
+}
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -588,16 +964,144 @@ function showCopyFeedback() {
     }, 2000);
 }
 
-// Add some interactive lemon animations
-document.addEventListener('DOMContentLoaded', function() {
-    const lemons = document.querySelectorAll('.lemon');
+function createUniversalRipple(event) {
+    const size = 50; // Reduced from 80
     
+    const x = event.clientX - size / 2;
+    const y = event.clientY - size / 2;
+    
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: fixed;
+        width: ${size}px;
+        height: ${size}px;
+        background: radial-gradient(circle, rgba(255, 215, 0, 0.7) 0%, rgba(255, 235, 59, 0.5) 30%, rgba(255, 255, 255, 0.3) 60%, transparent 100%);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: universalRipple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        left: ${x}px;
+        top: ${y}px;
+        pointer-events: none;
+        z-index: 99999;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    `;
+    
+    document.body.appendChild(ripple);
+    
+    // Create additional smaller ripple for extra effect
+    setTimeout(() => {
+        const smallRipple = document.createElement('div');
+        smallRipple.style.cssText = `
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: universalRipple 0.3s ease-out;
+            left: ${event.clientX - 12.5}px;
+            top: ${event.clientY - 12.5}px;
+            pointer-events: none;
+            z-index: 99999;
+        `;
+        document.body.appendChild(smallRipple);
+        
+        setTimeout(() => smallRipple.remove(), 300);
+    }, 50);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// Universal click handler - works on EVERYTHING
+document.addEventListener('click', function(event) {
+    createUniversalRipple(event);
+}, { passive: true });
+
+// Enhanced ripples for specific interactive elements
+function addEnhancedRipple(element, event) {
+    if (!element.getBoundingClientRect) return;
+    
+    const rect = element.getBoundingClientRect();
+    const size = 70; // Reduced from 120
+    
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: universalRipple 0.5s ease-out;
+        left: ${x}px;
+        top: ${y}px;
+        pointer-events: none;
+        z-index: 10;
+    `;
+    
+    element.appendChild(ripple);
+    
+    setTimeout(() => {
+        if (ripple.parentNode) {
+            ripple.remove();
+        }
+    }, 500);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Make sure all interactive elements can contain ripples
+    const interactiveElements = [
+        '.nav-btn', '.copy-btn', '.accept-invite-btn', 
+        '.executor-item', '.legend-item', '.feature-card',
+        '.script-box', '.invitation-card', '.hero',
+        'button', 'a', '[onclick]'
+    ];
+    
+    interactiveElements.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.style.position = element.style.position || 'relative';
+            element.style.overflow = element.style.overflow || 'hidden';
+            
+            element.addEventListener('click', function(event) {
+                addEnhancedRipple(this, event);
+            });
+        });
+    });
+    
+    // Special lemon interactions
+    const lemons = document.querySelectorAll('.lemon, .lemon-float');
     lemons.forEach(lemon => {
-        lemon.addEventListener('click', function() {
+        lemon.addEventListener('click', function(event) {
+            event.stopPropagation();
             this.style.animation = 'none';
-            this.offsetHeight; // Trigger reflow
-            this.style.animation = 'float 1s ease-in-out';
+            this.offsetHeight;
+            this.style.animation = this.classList.contains('lemon-float') ? 'floatLemon 2s ease-in-out' : 'float 2s ease-in-out';
         });
     });
 });
+
+// Add the CSS animation for universal ripple
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+@keyframes universalRipple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+`;
+document.head.appendChild(rippleStyle);
 </script>
