@@ -10,6 +10,9 @@ let voteCounts = {
     favorite: 0
 };
 
+// Default Facebook profile picture
+const DEFAULT_AVATAR = 'https://static.xx.fbcdn.net/rsrc.php/v1/yR/r/tInzwsw2pVX.png';
+
 // Load data from localStorage
 function loadAppData() {
     const savedVotes = localStorage.getItem('lemonHubVotes');
@@ -22,6 +25,7 @@ function loadAppData() {
     if (savedUser) {
         currentUser = JSON.parse(savedUser);
         updateAuthUI();
+        updateProfileUI();
     }
     
     updateVoteDisplays();
@@ -86,7 +90,7 @@ function updateVoteButtonStates() {
 function vote(type) {
     if (!currentUser) {
         alert('Please login to vote!');
-        showLoginModal();
+        navigateTo('#Login');
         return;
     }
     
@@ -107,6 +111,7 @@ function vote(type) {
     
     updateVoteDisplays();
     updateVoteButtonStates();
+    updateProfileStats();
     saveAppData();
     activateAd();
     
@@ -119,65 +124,6 @@ function vote(type) {
 }
 
 // Authentication Functions
-function showLoginModal() {
-    document.getElementById('loginModal').style.display = 'block';
-}
-
-function showSignupModal() {
-    document.getElementById('signupModal').style.display = 'block';
-}
-
-function hideModals() {
-    document.getElementById('loginModal').style.display = 'none';
-    document.getElementById('signupModal').style.display = 'none';
-}
-
-function loginWithGoogle() {
-    // Simulate Google login
-    const user = {
-        id: 'google_' + Math.random().toString(36).substr(2, 9),
-        name: 'Google User',
-        email: 'user@gmail.com',
-        avatar: 'https://imagizer.imageshack.com/img922/3774/Sk58gA.png',
-        provider: 'google',
-        votes: currentUser ? currentUser.votes : {}
-    };
-    
-    handleUserLogin(user);
-}
-
-function loginWithFacebook() {
-    // Simulate Facebook login
-    const user = {
-        id: 'facebook_' + Math.random().toString(36).substr(2, 9),
-        name: 'Facebook User',
-        email: 'user@facebook.com',
-        avatar: 'https://imagizer.imageshack.com/img922/3774/Sk58gA.png',
-        provider: 'facebook',
-        votes: currentUser ? currentUser.votes : {}
-    };
-    
-    handleUserLogin(user);
-}
-
-function signupWithGoogle() {
-    loginWithGoogle(); // Same as login for demo
-}
-
-function signupWithFacebook() {
-    loginWithFacebook(); // Same as login for demo
-}
-
-function handleUserLogin(user) {
-    currentUser = user;
-    updateAuthUI();
-    saveAppData();
-    hideModals();
-    
-    // Show welcome message
-    showNotification(`Welcome, ${user.name}!`);
-}
-
 function handleEmailLogin(event) {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value;
@@ -194,9 +140,11 @@ function handleEmailLogin(event) {
         id: 'email_' + Math.random().toString(36).substr(2, 9),
         name: email.split('@')[0],
         email: email,
-        avatar: 'https://imagizer.imageshack.com/img922/3774/Sk58gA.png',
+        avatar: DEFAULT_AVATAR,
         provider: 'email',
-        votes: currentUser ? currentUser.votes : {}
+        votes: {},
+        memberSince: new Date().toLocaleDateString(),
+        password: password // In real app, this should be hashed
     };
     
     handleUserLogin(user);
@@ -224,12 +172,29 @@ function handleEmailSignup(event) {
         id: 'email_' + Math.random().toString(36).substr(2, 9),
         name: username,
         email: email,
-        avatar: 'https://imagizer.imageshack.com/img922/3774/Sk58gA.png',
+        avatar: DEFAULT_AVATAR,
         provider: 'email',
-        votes: {}
+        votes: {},
+        memberSince: new Date().toLocaleDateString(),
+        password: password // In real app, this should be hashed
     };
     
     handleUserLogin(user);
+}
+
+function handleUserLogin(user) {
+    currentUser = user;
+    updateAuthUI();
+    updateProfileUI();
+    saveAppData();
+    
+    // Show welcome message
+    showNotification(`Welcome, ${user.name}!`);
+    
+    // Refresh page to update UI
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
 
 function logout() {
@@ -237,27 +202,162 @@ function logout() {
     updateAuthUI();
     saveAppData();
     showNotification('Logged out successfully');
+    
+    // Refresh page to update UI
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
 
 function updateAuthUI() {
-    const authButton = document.getElementById('authButton');
+    const authSection = document.getElementById('authSection');
     
     if (currentUser) {
-        // User is logged in
-        authButton.innerHTML = `
-            <div class="user-profile">
+        // User is logged in - show profile
+        authSection.innerHTML = `
+            <div class="user-profile" onclick="toggleProfileDropdown()">
                 <img src="${currentUser.avatar}" alt="${currentUser.name}" class="user-avatar">
                 <span class="user-name">${currentUser.name}</span>
-                <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
         `;
     } else {
         // User is not logged in
-        authButton.innerHTML = 'Login';
-        authButton.onclick = showLoginModal;
+        authSection.innerHTML = `
+            <button id="authButton" class="nav-btn auth" onclick="navigateTo('#Login')">Login</button>
+        `;
     }
     
     updateVoteButtonStates();
+}
+
+function updateProfileUI() {
+    if (!currentUser) return;
+    
+    // Update profile section
+    document.getElementById('profileUsername').textContent = currentUser.name;
+    document.getElementById('profileEmail').textContent = currentUser.email;
+    document.getElementById('profileAvatar').src = currentUser.avatar;
+    
+    // Update settings section
+    document.getElementById('settingsUsername').textContent = currentUser.name;
+    document.getElementById('settingsEmail').textContent = currentUser.email;
+    document.getElementById('settingsMemberSince').textContent = currentUser.memberSince;
+    
+    // Update profile stats
+    updateProfileStats();
+}
+
+function updateProfileStats() {
+    if (!currentUser) return;
+    
+    const likesCount = (currentUser.votes && currentUser.votes.thumbsUp) ? 1 : 0;
+    const favoritesCount = (currentUser.votes && currentUser.votes.favorite) ? 1 : 0;
+    
+    document.getElementById('likesCount').textContent = likesCount;
+    document.getElementById('favoritesCount').textContent = favoritesCount;
+    document.getElementById('memberSince').textContent = currentUser.memberSince;
+}
+
+function toggleProfileDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('profileDropdown');
+    const profile = document.querySelector('.user-profile');
+    
+    if (!profile.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('show');
+    }
+});
+
+function handleAvatarUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+        alert('Please select an image file');
+        return;
+    }
+    
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+        alert('Please select an image smaller than 5MB');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        // Update user avatar
+        currentUser.avatar = e.target.result;
+        updateAuthUI();
+        updateProfileUI();
+        saveAppData();
+        showNotification('Profile picture updated successfully!');
+    };
+    reader.readAsDataURL(file);
+}
+
+function handlePasswordChange(event) {
+    event.preventDefault();
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    // Validation
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    if (currentPassword !== currentUser.password) {
+        alert('Current password is incorrect');
+        return;
+    }
+    
+    if (newPassword.length < 6) {
+        alert('New password must be at least 6 characters long');
+        return;
+    }
+    
+    if (newPassword !== confirmPassword) {
+        alert('New passwords do not match');
+        return;
+    }
+    
+    // Update password
+    currentUser.password = newPassword;
+    saveAppData();
+    
+    // Reset form
+    event.target.reset();
+    
+    showNotification('Password updated successfully!');
+}
+
+function showDeleteConfirmation() {
+    document.getElementById('deleteModal').style.display = 'block';
+}
+
+function hideDeleteConfirmation() {
+    document.getElementById('deleteModal').style.display = 'none';
+}
+
+function deleteAccount() {
+    // Delete user account
+    currentUser = null;
+    localStorage.removeItem('lemonHubUser');
+    updateAuthUI();
+    hideDeleteConfirmation();
+    showNotification('Account deleted successfully');
+    
+    // Redirect to home
+    setTimeout(() => {
+        window.location.href = window.location.origin + window.location.pathname;
+    }, 1000);
 }
 
 function showNotification(message) {
@@ -296,6 +396,9 @@ function navigateTo(hash) {
     // Show the selected section
     showSection(hash);
     
+    // Close profile dropdown
+    document.getElementById('profileDropdown').classList.remove('show');
+    
     // Activate ad
     activateAd();
 }
@@ -319,6 +422,16 @@ function showSection(hash) {
     } else if (hash === '#Script') {
         sectionId = 'script-section';
         document.querySelector('.nav-btn[onclick="navigateTo(\'#Script\')"]').classList.add('active');
+    } else if (hash === '#Profile') {
+        sectionId = 'profile-section';
+    } else if (hash === '#Settings') {
+        sectionId = 'settings-section';
+    } else if (hash === '#Login') {
+        showLoginModal();
+        return;
+    } else if (hash === '#Signup') {
+        showSignupModal();
+        return;
     }
     
     // Show selected section
@@ -326,6 +439,20 @@ function showSection(hash) {
     if (sectionElement) {
         sectionElement.classList.add('active');
     }
+}
+
+function showLoginModal() {
+    document.getElementById('loginModal').style.display = 'block';
+}
+
+function showSignupModal() {
+    document.getElementById('signupModal').style.display = 'block';
+}
+
+function hideModals() {
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('signupModal').style.display = 'none';
+    document.getElementById('deleteModal').style.display = 'none';
 }
 
 // Handle browser back/forward buttons and hash changes
@@ -361,22 +488,10 @@ function setupModalEvents() {
         }
     });
     
-    // Switch between login and signup
-    document.getElementById('showSignup').addEventListener('click', function(e) {
-        e.preventDefault();
-        hideModals();
-        showSignupModal();
-    });
-    
-    document.getElementById('showLogin').addEventListener('click', function(e) {
-        e.preventDefault();
-        hideModals();
-        showLoginModal();
-    });
-    
     // Form submissions
     document.getElementById('emailLoginForm').addEventListener('submit', handleEmailLogin);
     document.getElementById('emailSignupForm').addEventListener('submit', handleEmailSignup);
+    document.getElementById('changePasswordForm').addEventListener('submit', handlePasswordChange);
 }
 
 function copyScript() {
@@ -517,6 +632,8 @@ function initializePage() {
         '.executor-item', '.legend-item', '.feature-card',
         '.script-box', '.invitation-card', '.hero',
         '.vote-btn', '.game-link-btn', '.auth-btn',
+        '.profile-action-btn', '.change-avatar-btn',
+        '.settings-save-btn', '.danger-btn', '.modal-btn',
         'button', 'a'
     ];
     
