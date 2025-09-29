@@ -15,10 +15,11 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #fff3a0 0%, #ffd700 50%, #ffeb3b 100%);
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
         min-height: 100vh;
         overflow-x: hidden;
         position: relative;
+        color: #ffffff;
     }
 
     /* Lemon Doodles */
@@ -35,8 +36,9 @@
     .lemon {
         position: absolute;
         font-size: 2rem;
-        opacity: 0.1;
+        opacity: 0.05;
         animation: float 6s ease-in-out infinite;
+        filter: brightness(0.8);
     }
 
     .lemon1 { top: 10%; left: 10%; animation-delay: 0s; }
@@ -52,7 +54,7 @@
 
     /* Navigation */
     .navbar {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(10px);
         padding: 1rem 2rem;
         display: flex;
@@ -60,7 +62,8 @@
         align-items: center;
         position: relative;
         z-index: 10;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 20px rgba(255, 215, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
     }
 
     .nav-brand {
@@ -74,12 +77,14 @@
         height: 50px;
         border-radius: 50%;
         object-fit: cover;
+        border: 2px solid #ffd700;
     }
 
     .brand-name {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #333;
+        color: #ffd700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
 
     .nav-menu {
@@ -90,18 +95,20 @@
     .nav-btn {
         padding: 0.8rem 1.5rem;
         border: none;
-        background: rgba(255, 255, 255, 0.3);
-        color: #333;
-        border-radius: 25px;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         transition: all 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
     .nav-btn:hover, .nav-btn.active {
-        background: #fff;
+        background: rgba(255, 215, 0, 0.2);
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        border-color: #ffd700;
     }
 
     /* Main Container */
@@ -135,15 +142,19 @@
     }
 
     .hero-title {
-        font-size: 3rem;
-        color: #333;
+        font-size: 3.5rem;
+        color: #ffd700;
         margin-bottom: 1rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
-        color: #666;
+        font-size: 1.3rem;
+        color: #cccccc;
         margin-bottom: 2rem;
     }
 
@@ -155,19 +166,20 @@
     }
 
     .invitation-card {
-        background: #36393f;
+        background: #2f3136;
         border-radius: 12px;
         width: 100%;
         max-width: 400px;
         overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         color: white;
         animation: inviteGlow 2s ease-in-out infinite alternate;
+        border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
     @keyframes inviteGlow {
-        0% { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
-        100% { box-shadow: 0 8px 24px rgba(114, 137, 218, 0.3); }
+        0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+        100% { box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2); }
     }
 
     .invitation-header {
@@ -175,8 +187,8 @@
         align-items: center;
         padding: 16px;
         gap: 12px;
-        background: #2f3136;
-        border-bottom: 1px solid #40444b;
+        background: #36393f;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
     }
 
     .server-icon {
@@ -184,6 +196,7 @@
         height: 48px;
         border-radius: 50%;
         object-fit: cover;
+        border: 2px solid #ffd700;
     }
 
     .server-info {
@@ -193,7 +206,7 @@
     .server-name {
         font-size: 16px;
         font-weight: 600;
-        color: #ffffff;
+        color: #ffd700;
         margin: 0;
     }
 
@@ -234,7 +247,7 @@
         align-items: center;
         gap: 8px;
         padding: 12px 24px;
-        background: #5865f2;
+        background: linear-gradient(45deg, #5865f2, #4752c4);
         color: white;
         text-decoration: none;
         border-radius: 4px;
@@ -244,11 +257,14 @@
         width: 100%;
         justify-content: center;
         margin-bottom: 8px;
+        border: none;
+        cursor: pointer;
     }
 
     .accept-invite-btn:hover {
-        background: #4752c4;
+        background: linear-gradient(45deg, #4752c4, #3c45a5);
         transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
     }
 
     .discord-icon {
@@ -260,8 +276,9 @@
     .features-title {
         text-align: center;
         font-size: 2.5rem;
-        color: #333;
+        color: #ffd700;
         margin-bottom: 2rem;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
     }
 
     .features-grid {
@@ -271,31 +288,37 @@
     }
 
     .feature-card {
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.05);
         padding: 2rem;
         border-radius: 15px;
         text-align: center;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        backdrop-filter: blur(10px);
     }
 
     .feature-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
     }
 
     .feature-icon {
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-bottom: 1rem;
+        color: #ffd700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
 
     .feature-card h3 {
-        color: #333;
+        color: #ffd700;
         margin-bottom: 1rem;
         font-size: 1.3rem;
     }
 
     .feature-card p {
-        color: #666;
+        color: #cccccc;
         line-height: 1.6;
     }
 
@@ -308,8 +331,9 @@
 
     .script-title {
         font-size: 3rem;
-        color: #333;
+        color: #ffd700;
         margin-bottom: 2rem;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
     }
 
     .script-logo {
@@ -318,10 +342,10 @@
         border-radius: 20px;
         object-fit: cover;
         margin-bottom: 2rem;
-        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 
-                    0 0 20px rgba(255, 215, 0, 0.4),
-                    0 0 40px rgba(255, 215, 0, 0.2);
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 
+                    0 0 30px rgba(255, 215, 0, 0.4),
+                    0 0 60px rgba(255, 215, 0, 0.2);
+        border: 2px solid rgba(255, 215, 0, 0.5);
         position: relative;
         animation: logoGlow 3s ease-in-out infinite alternate;
     }
@@ -335,9 +359,9 @@
         bottom: -6px;
         background: linear-gradient(45deg, 
             rgba(255, 215, 0, 0.8) 0%,
-            rgba(255, 255, 255, 0.6) 25%,
+            rgba(255, 255, 255, 0.3) 25%,
             rgba(255, 215, 0, 0.8) 50%,
-            rgba(255, 255, 255, 0.6) 75%,
+            rgba(255, 255, 255, 0.3) 75%,
             rgba(255, 215, 0, 0.8) 100%);
         border-radius: 24px;
         z-index: -1;
@@ -346,14 +370,14 @@
 
     @keyframes logoGlow {
         0% { 
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 
                         0 0 20px rgba(255, 215, 0, 0.4),
                         0 0 40px rgba(255, 215, 0, 0.2);
         }
         100% { 
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5), 
-                        0 0 30px rgba(255, 215, 0, 0.6),
-                        0 0 60px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.5), 
+                        0 0 40px rgba(255, 215, 0, 0.6),
+                        0 0 80px rgba(255, 215, 0, 0.4);
         }
     }
 
@@ -364,24 +388,27 @@
     }
 
     .script-box {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(30, 30, 30, 0.9);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         margin-bottom: 2rem;
+        border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
     .script-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #333;
-        color: white;
+        background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
+        color: #ffd700;
         padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.3);
     }
 
     .script-label {
         font-weight: bold;
+        font-size: 1.1rem;
     }
 
     .copy-btn {
@@ -389,17 +416,19 @@
         align-items: center;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
-        background: #4CAF50;
+        background: linear-gradient(45deg, #4CAF50, #45a049);
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         font-weight: bold;
-        transition: background 0.3s ease;
+        transition: all 0.3s ease;
     }
 
     .copy-btn:hover {
-        background: #45a049;
+        background: linear-gradient(45deg, #45a049, #3d8b40);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
     }
 
     .copy-icon {
@@ -416,24 +445,27 @@
         line-height: 1.6;
         word-break: break-all;
         text-align: left;
+        border: 1px solid rgba(255, 215, 0, 0.1);
     }
 
     .script-instructions {
-        color: #666;
+        color: #cccccc;
         font-size: 1.1rem;
         font-style: italic;
+        margin-top: 1rem;
     }
 
     /* Executor Compatibility */
     .executor-compatibility {
-        background: linear-gradient(135deg, rgba(255, 243, 160, 0.95) 0%, rgba(255, 235, 59, 0.9) 50%, rgba(255, 215, 0, 0.85) 100%);
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 235, 59, 0.08) 50%, rgba(255, 215, 0, 0.05) 100%);
         border-radius: 20px;
         padding: 2.5rem;
         margin-top: 2rem;
-        box-shadow: 0 10px 30px rgba(255, 193, 7, 0.2), 0 0 0 1px rgba(255, 235, 59, 0.3);
+        box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1), 0 0 0 1px rgba(255, 235, 59, 0.1);
         position: relative;
         overflow: hidden;
         backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
     .executor-compatibility::before {
@@ -443,7 +475,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30" opacity="0.05">🍋</text></svg>') repeat;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30" opacity="0.03" fill="%23ffd700">LH</text></svg>') repeat;
         background-size: 80px 80px;
         animation: lemonPattern 20s linear infinite;
         pointer-events: none;
@@ -457,7 +489,7 @@
     .compatibility-title {
         font-size: 2.2rem;
         font-weight: 700;
-        background: linear-gradient(45deg, #f57f17, #ff8f00, #ffa000);
+        background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -490,6 +522,7 @@
         overflow: hidden;
         backdrop-filter: blur(10px);
         font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .executor-item::before {
@@ -511,53 +544,48 @@
 
     .executor-item:hover {
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.2);
     }
 
     .executor-item.supported {
-        background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(76, 175, 80, 0.15));
-        border: 2px solid rgba(139, 195, 74, 0.4);
-        box-shadow: 0 4px 15px rgba(139, 195, 74, 0.1);
+        background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(76, 175, 80, 0.1));
+        border: 1px solid rgba(139, 195, 74, 0.3);
     }
 
     .executor-item.krnl-android {
-        background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(76, 175, 80, 0.15));
-        border: 2px solid rgba(139, 195, 74, 0.4);
-        box-shadow: 0 4px 15px rgba(139, 195, 74, 0.1);
+        background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(76, 175, 80, 0.1));
+        border: 1px solid rgba(139, 195, 74, 0.3);
     }
 
     .executor-item.krnl-ios {
-        background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 152, 0, 0.2));
-        border: 2px solid rgba(255, 193, 7, 0.5);
-        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15);
+        background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.15));
+        border: 1px solid rgba(255, 193, 7, 0.4);
     }
 
     .executor-item.detected {
-        background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 87, 34, 0.15));
-        border: 2px solid rgba(255, 152, 0, 0.4);
-        box-shadow: 0 4px 15px rgba(255, 152, 0, 0.1);
+        background: linear-gradient(135deg, rgba(255, 152, 0, 0.15), rgba(255, 87, 34, 0.1));
+        border: 1px solid rgba(255, 152, 0, 0.3);
     }
 
     .status-icon {
         font-size: 1.4rem;
         min-width: 28px;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
     .executor-name {
         font-weight: 600;
         font-size: 1.1rem;
-        color: #2e2e2e;
-        text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        color: #ffffff;
         letter-spacing: 0.3px;
     }
 
     .compatibility-legend {
-        border-top: 2px solid rgba(255, 193, 7, 0.3);
+        border-top: 1px solid rgba(255, 193, 7, 0.2);
         padding-top: 2rem;
         position: relative;
         z-index: 2;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 15px;
         padding: 2rem;
         backdrop-filter: blur(5px);
@@ -577,22 +605,21 @@
     }
 
     .legend-item:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
         transform: translateX(5px);
     }
 
     .legend-icon {
         font-size: 1.2rem;
         min-width: 28px;
-        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
     }
 
     .legend-text {
-        color: #2e2e2e;
+        color: #ffffff;
         font-size: 1rem;
         font-weight: 500;
         line-height: 1.5;
-        text-shadow: 0 1px 2px rgba(255,255,255,0.5);
     }
 
     /* Ripple Effect */
@@ -606,7 +633,7 @@
         position: absolute;
         width: 100px;
         height: 100px;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
         transform: scale(0);
         animation: rippleAnimation 0.6s ease-out;
@@ -628,9 +655,10 @@
     .executor-compatibility .lemon-float {
         position: absolute;
         font-size: 1.5rem;
-        opacity: 0.1;
+        opacity: 0.05;
         pointer-events: none;
         z-index: 1;
+        color: #ffd700;
     }
 
     .lemon-float-1 { top: 20%; left: 5%; animation: floatLemon 8s ease-in-out infinite; }
@@ -638,8 +666,8 @@
     .lemon-float-3 { bottom: 30%; left: 10%; animation: floatLemon 7s ease-in-out infinite 1s; }
 
     @keyframes floatLemon {
-        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
-        50% { transform: translateY(-15px) rotate(180deg); opacity: 0.2; }
+        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.05; }
+        50% { transform: translateY(-15px) rotate(180deg); opacity: 0.1; }
     }
 
     /* Enhanced Typography */
@@ -653,13 +681,14 @@
         margin: 20px auto;
         text-align: center;
         padding: 10px;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 10px;
         max-width: 468px;
         min-height: 60px;
+        border: 1px solid rgba(255, 215, 0, 0.1);
     }
 
-    /* Responsive Design for Compatibility */
+    /* Responsive Design */
     @media (max-width: 768px) {
         .compatibility-list {
             grid-template-columns: 1fr;
@@ -672,19 +701,7 @@
         .compatibility-title {
             font-size: 1.8rem;
         }
-    }
 
-    /* Responsive Design for Compatibility */
-    @media (max-width: 768px) {
-        .compatibility-list {
-            grid-template-columns: 1fr;
-        }
-        
-        .executor-compatibility {
-            padding: 1.5rem;
-        }
-    }
-    @media (max-width: 768px) {
         .navbar {
             flex-direction: column;
             gap: 1rem;
@@ -692,7 +709,7 @@
         }
 
         .hero-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
         .script-title {
@@ -724,8 +741,8 @@
             <span class="brand-name">Lemon Hub</span>
         </div>
         <div class="nav-menu">
-            <button class="nav-btn active" onclick="showHome(); activateAd();">Home</button>
-            <button class="nav-btn" onclick="showScript(); activateAd();">Script</button>
+            <button class="nav-btn active" onclick="navigateTo('Home')">Home</button>
+            <button class="nav-btn" onclick="navigateTo('Script')">Script</button>
         </div>
     </nav>
 
@@ -748,7 +765,7 @@
                         <div class="invitation-body">
                             <p class="invitation-text">You've been invited to join</p>
                             <h2 class="server-title">Lemon Hub Discord Server</h2>
-                            <p class="invitation-desc">🍋 Best Steal a Brainrot Script & community</p>
+                            <p class="invitation-desc">Best Steal a Brainrot Script & community</p>
                         </div>
                         
                         <div class="invitation-footer">
@@ -768,23 +785,23 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
-                        <h3>The Best Steal A Brainrot Script!</h3>
-                        <p>Advanced stealing mechanics with brainrot</p>
+                        <h3>Advanced Steal Mechanics</h3>
+                        <p>Premium stealing system with brainrot integration for maximum efficiency</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🔄</div>
-                        <h3>Auto Joiner Brainrot</h3>
-                        <p>Automatically join servers with brainrot features must buy it message the owner!</p>
+                        <h3>Auto Server Joiner</h3>
+                        <p>Automatically join servers with brainrot features - contact owner for purchase</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🛡️</div>
-                        <h3>OP Desync</h3>
-                        <p>Best Desync Script for stealing.</p>
+                        <h3>Advanced Desync</h3>
+                        <p>Premium desync system optimized for stealing operations</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">✨</div>
-                        <h3>And Other Stuff!</h3>
-                        <p>Many more amazing features waiting for you</p>
+                        <h3>Premium Features</h3>
+                        <p>Exclusive tools and utilities for enhanced gameplay experience</p>
                     </div>
                 </div>
             </div>
@@ -814,9 +831,9 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 <p class="script-instructions">Copy the script above and paste it into your executor!</p>
                 
                 <div class="executor-compatibility">
-                    <div class="lemon-float lemon-float-1">🍋</div>
-                    <div class="lemon-float lemon-float-2">🍋</div>
-                    <div class="lemon-float lemon-float-3">🍋</div>
+                    <div class="lemon-float lemon-float-1">LH</div>
+                    <div class="lemon-float lemon-float-2">LH</div>
+                    <div class="lemon-float lemon-float-3">LH</div>
                     
                     <h3 class="compatibility-title">Executor Compatibility</h3>
                     <div class="compatibility-list">
@@ -857,19 +874,19 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                             <span class="executor-name">Krnl Android</span>
                         </div>
                         <div class="executor-item krnl-ios ripple" onclick="addRipple(event); activateAd();">
-                            <span class="status-icon">☢️⚠️</span>
+                            <span class="status-icon">⚠️</span>
                             <span class="executor-name">Krnl iOS</span>
                         </div>
                         <div class="executor-item detected ripple" onclick="addRipple(event); activateAd();">
-                            <span class="status-icon">☢️</span>
+                            <span class="status-icon">⚠️</span>
                             <span class="executor-name">Xeno</span>
                         </div>
                         <div class="executor-item detected ripple" onclick="addRipple(event); activateAd();">
-                            <span class="status-icon">☢️</span>
+                            <span class="status-icon">⚠️</span>
                             <span class="executor-name">Solara</span>
                         </div>
                         <div class="executor-item detected ripple" onclick="addRipple(event); activateAd();">
-                            <span class="status-icon">☢️</span>
+                            <span class="status-icon">⚠️</span>
                             <span class="executor-name">JJspoit</span>
                         </div>
                     </div>
@@ -880,16 +897,8 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                             <span class="legend-text">Supported Executor and working for Lemon Hub</span>
                         </div>
                         <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
-                            <span class="legend-icon">☢️</span>
-                            <span class="legend-text">Working BUT detected by Steal A brainrot and Roblox</span>
-                        </div>
-                        <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
-                            <span class="legend-icon">🛑</span>
-                            <span class="legend-text">Working BUT detected by roblox</span>
-                        </div>
-                        <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
                             <span class="legend-icon">⚠️</span>
-                            <span class="legend-text">Some Issues with the executor for LemonHub</span>
+                            <span class="legend-text">Working BUT detected by anti-cheat systems</span>
                         </div>
                         <div class="legend-item ripple" onclick="addRipple(event); activateAd();">
                             <span class="legend-icon">❌</span>
@@ -908,23 +917,52 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         // script.js
         let adLoaded = false;
 
-        function showHome() {
-            document.getElementById('home-section').classList.add('active');
-            document.getElementById('script-section').classList.remove('active');
+        // URL Routing System
+        function navigateTo(section) {
+            // Update URL without page reload
+            const newUrl = `${window.location.origin}${window.location.pathname}#${section}`;
+            window.history.pushState({ section }, '', newUrl);
             
-            // Update navigation buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.nav-btn[onclick="showHome()"]').classList.add('active');
+            // Show the selected section
+            showSection(section);
+            
+            // Activate ad
+            activateAd();
         }
 
-        function showScript() {
-            document.getElementById('home-section').classList.remove('active');
-            document.getElementById('script-section').classList.add('active');
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
             
             // Update navigation buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.nav-btn[onclick="showScript()"]').classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section and activate corresponding button
+            const sectionElement = document.getElementById(`${section.toLowerCase()}-section`);
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+                document.querySelector(`.nav-btn[onclick="navigateTo('${section}')"]`).classList.add('active');
+            }
         }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            const section = event.state ? event.state.section : 'Home';
+            showSection(section);
+        });
+
+        // Handle initial page load and URL hash
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.replace('#', '') || 'Home';
+            showSection(hash);
+            
+            // Initialize other functionality
+            initializePage();
+        });
 
         function copyScript() {
             const scriptCode = document.getElementById('script-code').textContent;
@@ -967,11 +1005,11 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
             const originalText = copyBtn.innerHTML;
             
             copyBtn.innerHTML = '<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>Copied!';
-            copyBtn.style.background = '#4CAF50';
+            copyBtn.style.background = 'linear-gradient(45deg, #45a049, #3d8b40)';
             
             setTimeout(() => {
                 copyBtn.innerHTML = originalText;
-                copyBtn.style.background = '#4CAF50';
+                copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
             }, 2000);
         }
 
@@ -987,7 +1025,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         }
 
         function createUniversalRipple(event) {
-            const size = 50; // Reduced from 80
+            const size = 50;
             
             const x = event.clientX - size / 2;
             const y = event.clientY - size / 2;
@@ -997,7 +1035,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 position: fixed;
                 width: ${size}px;
                 height: ${size}px;
-                background: radial-gradient(circle, rgba(255, 215, 0, 0.7) 0%, rgba(255, 235, 59, 0.5) 30%, rgba(255, 255, 255, 0.3) 60%, transparent 100%);
+                background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 235, 59, 0.2) 30%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
                 border-radius: 50%;
                 transform: scale(0);
                 animation: universalRipple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1005,48 +1043,21 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 top: ${y}px;
                 pointer-events: none;
                 z-index: 99999;
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
             `;
             
             document.body.appendChild(ripple);
-            
-            // Create additional smaller ripple for extra effect
-            setTimeout(() => {
-                const smallRipple = document.createElement('div');
-                smallRipple.style.cssText = `
-                    position: fixed;
-                    width: 25px;
-                    height: 25px;
-                    background: rgba(255, 255, 255, 0.8);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: universalRipple 0.3s ease-out;
-                    left: ${event.clientX - 12.5}px;
-                    top: ${event.clientY - 12.5}px;
-                    pointer-events: none;
-                    z-index: 99999;
-                `;
-                document.body.appendChild(smallRipple);
-                
-                setTimeout(() => smallRipple.remove(), 300);
-            }, 50);
             
             setTimeout(() => {
                 ripple.remove();
             }, 600);
         }
 
-        // Universal click handler - works on EVERYTHING
-        document.addEventListener('click', function(event) {
-            createUniversalRipple(event);
-        }, { passive: true });
-
         // Enhanced ripples for specific interactive elements
         function addEnhancedRipple(element, event) {
             if (!element.getBoundingClientRect) return;
             
             const rect = element.getBoundingClientRect();
-            const size = 70; // Reduced from 120
+            const size = 70;
             
             const x = event.clientX - rect.left - size / 2;
             const y = event.clientY - rect.top - size / 2;
@@ -1056,7 +1067,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                 position: absolute;
                 width: ${size}px;
                 height: ${size}px;
-                background: rgba(255, 255, 255, 0.4);
+                background: rgba(255, 255, 255, 0.1);
                 border-radius: 50%;
                 transform: scale(0);
                 animation: universalRipple 0.5s ease-out;
@@ -1075,13 +1086,13 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
             }, 500);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializePage() {
             // Make sure all interactive elements can contain ripples
             const interactiveElements = [
                 '.nav-btn', '.copy-btn', '.accept-invite-btn', 
                 '.executor-item', '.legend-item', '.feature-card',
                 '.script-box', '.invitation-card', '.hero',
-                'button', 'a', '[onclick]'
+                'button', 'a'
             ];
             
             interactiveElements.forEach(selector => {
@@ -1106,7 +1117,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                     this.style.animation = this.classList.contains('lemon-float') ? 'floatLemon 2s ease-in-out' : 'float 2s ease-in-out';
                 });
             });
-        });
+        }
 
         // Add the CSS animation for universal ripple
         const rippleStyle = document.createElement('style');
