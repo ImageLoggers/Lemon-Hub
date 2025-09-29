@@ -1,13 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lemon Hub - Best Steal A Brainrot Script</title>
-  <link rel="icon" type="image/png" href="https://imagizer.imageshack.com/img922/3774/Sk58gA.png">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemon Hub - Best Steal A Brainrot Script</title>
+    <link rel="icon" type="image/png" href="https://imagizer.imageshack.com/img922/3774/Sk58gA.png">
+    <style>
+        /* COMPLETE CSS FROM YOUR STYLE.CSS - COMBINED */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); min-height: 100vh; overflow-x: hidden; position: relative; color: #ffffff; }
+        .lemon-doodles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .lemon { position: absolute; font-size: 2rem; opacity: 0.05; animation: float 6s ease-in-out infinite; filter: brightness(0.8); }
+        .lemon1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .lemon2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .lemon3 { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .lemon4 { bottom: 15%; right: 25%; animation-delay: 3s; }
+        .lemon5 { top: 50%; right: 10%; animation-delay: 4s; }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(180deg); } }
+        .navbar { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; box-shadow: 0 2px 20px rgba(255, 215, 0, 0.1); border-bottom: 1px solid rgba(255, 215, 0, 0.2); }
+        .nav-brand { display: flex; align-items: center; gap: 1rem; }
+        .logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ffd700; }
+        .brand-name { font-size: 1.5rem; font-weight: bold; color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        .nav-menu { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { padding: 0.8rem 1.5rem; border: none; background: rgba(255, 215, 0, 0.1); color: #ffd700; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; border: 1px solid rgba(255, 215, 0, 0.3); }
+        .nav-btn:hover, .nav-btn.active { background: rgba(255, 215, 0, 0.2); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); border-color: #ffd700; }
+        .user-profile { display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.3); cursor: pointer; position: relative; transition: all 0.3s ease; }
+        .user-profile:hover { background: rgba(255, 215, 0, 0.2); transform: translateY(-1px); }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #ffd700; }
+        .user-name { color: #ffd700; font-weight: 600; font-size: 0.9rem; }
+        .profile-dropdown { position: absolute; top: 100%; right: 2rem; background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(20px); border-radius: 12px; padding: 0.5rem; min-width: 200px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 215, 0, 0.3); z-index: 1000; display: none; animation: dropdownFade 0.2s ease-out; }
+        @keyframes dropdownFade { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .profile-dropdown.show { display: block; }
+        .dropdown-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; color: #ffffff; text-decoration: none; }
+        .dropdown-item:hover { background: rgba(255, 215, 0, 0.1); transform: translateX(5px); }
+        .dropdown-item.logout { color: #f44336; }
+        .dropdown-item.logout:hover { background: rgba(244, 67, 54, 0.1); }
+        .dropdown-icon { width: 18px; height: 18px; }
+        .dropdown-divider { height: 1px; background: rgba(255, 255, 255, 0.1); margin: 0.5rem 0; }
+        .container { padding: 2rem; position: relative; z-index: 5; max-width: 1200px; margin: 0 auto; }
+        .section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero { text-align: center; margin-bottom: 4rem; }
+        .hero-title { font-size: 3.5rem; color: #ffd700; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: 1.3rem; color: #cccccc; margin-bottom: 2rem; }
+        .game-link-section { text-align: center; margin: 3rem 0; padding: 2rem; background: rgba(255, 215, 0, 0.05); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.2); }
+        .game-link-title { font-size: 1.5rem; color: #ffd700; margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+        .game-link-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: linear-gradient(45deg, #ff6b00, #ff8c00); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; margin-bottom: 1.5rem; border: none; cursor: pointer; }
+        .game-link-btn:hover { background: linear-gradient(45deg, #ff8c00, #ff6b00); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4); }
+        .game-icon { width: 18px; height: 18px; }
+        .voting-section { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .vote-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; font-size: 0.9rem; }
+        .vote-btn:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .vote-btn.thumbs-up:hover { background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; }
+        .vote-btn.thumbs-down:hover { background: rgba(244, 67, 54, 0.2); border-color: #f44336; }
+        .vote-btn.favorite:hover { background: rgba(255, 193, 7, 0.2); border-color: #ffc107; }
+        .vote-count { background: rgba(255, 255, 255, 0.1); padding: 0.2rem 0.5rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
+        .vote-icon { width: 16px; height: 16px; }
+        .discord-invitation { display: flex; justify-content: center; margin: 3rem 0; }
+        .invitation-card { background: #2f3136; border-radius: 12px; width: 100%; max-width: 400px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); color: white; animation: inviteGlow 2s ease-in-out infinite alternate; border: 1px solid rgba(255, 215, 0, 0.3); }
+        @keyframes inviteGlow { 0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); } 100% { box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2); } }
+        .invitation-header { display: flex; align-items: center; padding: 16px; gap: 12px; background: #36393f; border-bottom: 1px solid rgba(255, 215, 0, 0.2); }
+        .server-icon { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #ffd700; }
+        .server-info { flex: 1; }
+        .server-name { font-size: 16px; font-weight: 600; color: #ffd700; margin: 0; }
+        .invitation-body { padding: 20px 16px; text-align: center; }
+        .invitation-text { font-size: 14px; color: #b9bbbe; margin: 0 0 4px 0; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+        .server-title { font-size: 24px; font-weight: 600; color: #ffffff; margin: 0 0 8px 0; }
+        .invitation-desc { font-size: 14px; color: #b9bbbe; margin: 0 0 20px 0; }
+        .invitation-footer { padding: 0 16px 20px 16px; text-align: center; }
+        .accept-invite-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: linear-gradient(45deg, #5865f2, #4752c4); color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; transition: all 0.2s ease; width: 100%; justify-content: center; margin-bottom: 8px; border: none; cursor: pointer; }
+        .accept-invite-btn:hover { background: linear-gradient(45deg, #4752c4, #3c45a5); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4); }
+        .discord-icon { width: 16px; height: 16px; }
+        .features-title { text-align: center; font-size: 2.5rem; color: #ffd700; margin-bottom: 2rem; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; border: 1px solid rgba(255, 215, 0, 0.1); backdrop-filter: blur(10px); }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(255, 215, 0, 0.2); border-color: rgba(255, 215, 0, 0.3); }
+        .feature-icon { width: 60px; height: 60px; margin: 0 auto 1rem auto; background: rgba(255, 215, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255, 215, 0, 0.3); }
+        .feature-icon svg { width: 30px; height: 30px; fill: #ffd700; }
+        .feature-card h3 { color: #ffd700; margin-bottom: 1rem; font-size: 1.3rem; }
+        .feature-card p { color: #cccccc; line-height: 1.6; }
+        .script-container { text-align: center; max-width: 800px; margin: 0 auto; }
+        .script-title { font-size: 3rem; color: #ffd700; margin-bottom: 2rem; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        .script-logo { width: 200px; height: 200px; border-radius: 20px; object-fit: cover; margin-bottom: 2rem; box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2); border: 2px solid rgba(255, 215, 0, 0.5); position: relative; animation: logoGlow 3s ease-in-out infinite alternate; }
+        .script-logo::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; background: linear-gradient(45deg, rgba(255, 215, 0, 0.8) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 215, 0, 0.8) 50%, rgba(255, 255, 255, 0.3) 75%, rgba(255, 215, 0, 0.8) 100%); border-radius: 24px; z-index: -1; animation: borderGlow 2s linear infinite; }
+        @keyframes logoGlow { 0% { box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.2); } 100% { box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.4); } }
+        @keyframes borderGlow { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+        .script-box { background: rgba(30, 30, 30, 0.9); border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); margin-bottom: 2rem; border: 1px solid rgba(255, 215, 0, 0.2); }
+        .script-header { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(45deg, #2d2d2d, #1a1a1a); color: #ffd700; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255, 215, 0, 0.3); }
+        .script-label { font-weight: bold; font-size: 1.1rem; }
+        .copy-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: linear-gradient(45deg, #4CAF50, #45a049); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
+        .copy-btn:hover { background: linear-gradient(45deg, #45a049, #3d8b40); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4); }
+        .copy-icon { width: 16px; height: 16px; }
+        .script-code { background: #1e1e1e; color: #f8f8f2; padding: 2rem; font-family: 'Courier New', monospace; font-size: 1rem; line-height: 1.6; word-break: break-all; text-align: left; border: 1px solid rgba(255, 215, 0, 0.1); }
+        .script-instructions { color: #cccccc; font-size: 1.1rem; font-style: italic; margin-top: 1rem; }
+        .executor-compatibility { background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 235, 59, 0.08) 50%, rgba(255, 215, 0, 0.05) 100%); border-radius: 20px; padding: 2.5rem; margin-top: 2rem; box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1), 0 0 0 1px rgba(255, 235, 59, 0.1); position: relative; overflow: hidden; backdrop-filter: blur(10px); border: 1px solid rgba(255, 215, 0, 0.2); }
+        .executor-compatibility::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30" opacity="0.03" fill="%23ffd700">LH</text></svg>') repeat; background-size: 80px 80px; animation: lemonPattern 20s linear infinite; pointer-events: none; }
+        @keyframes lemonPattern { 0% { transform: translateX(0) translateY(0); } 100% { transform: translateX(80px) translateY(80px); } }
+        .compatibility-title { font-size: 2.2rem; font-weight: 700; background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; text-align: center; position: relative; z-index: 2; text-shadow: 0 2px 4px rgba(0,0,0,0.1); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; }
+        .compatibility-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; position: relative; z-index: 2; }
+        .executor-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; border-radius: 12px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative; overflow: hidden; backdrop-filter: blur(10px); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .executor-item::before { content: ''; position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; opacity: 0; transition: opacity 0.3s ease; }
+        .executor-item:hover::before { opacity: 1; }
+        .executor-item:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(255, 193, 7, 0.2); }
+        .executor-item.supported { background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(76, 175, 80, 0.1)); border: 1px solid rgba(139, 195, 74, 0.3); }
+        .executor-item.krnl-android { background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(76, 175, 80, 0.1)); border: 1px solid rgba(139, 195, 74, 0.3); }
+        .executor-item.krnl-ios { background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.15)); border: 1px solid rgba(255, 193, 7, 0.4); }
+        .executor-item.detected { background: linear-gradient(135deg, rgba(255, 152, 0, 0.15), rgba(255, 87, 34, 0.1)); border: 1px solid rgba(255, 152, 0, 0.3); }
+        .status-icon { font-size: 1.4rem; min-width: 28px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .executor-name { font-weight: 600; font-size: 1.1rem; color: #ffffff; letter-spacing: 0.3px; }
+        .compatibility-legend { border-top: 1px solid rgba(255, 193, 7, 0.2); padding-top: 2rem; position: relative; z-index: 2; background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 2rem; backdrop-filter: blur(5px); }
+        .legend-item { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 0; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; transition: all 0.2s ease; border-radius: 8px; cursor: pointer; position: relative; overflow: hidden; }
+        .legend-item:hover { background: rgba(255, 255, 255, 0.05); transform: translateX(5px); }
+        .legend-icon { font-size: 1.2rem; min-width: 28px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+        .legend-text { color: #ffffff; font-size: 1rem; font-weight: 500; line-height: 1.5; }
+        .ripple { position: relative; overflow: hidden; }
+        .ripple::after { content: ''; position: absolute; width: 100px; height: 100px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transform: scale(0); animation: rippleAnimation 0.6s ease-out; pointer-events: none; }
+        @keyframes rippleAnimation { 0% { transform: scale(0); opacity: 0.7; } 100% { transform: scale(2); opacity: 0; } }
+        .executor-compatibility .lemon-float { position: absolute; font-size: 1.5rem; opacity: 0.05; pointer-events: none; z-index: 1; color: #ffd700; }
+        .lemon-float-1 { top: 20%; left: 5%; animation: floatLemon 8s ease-in-out infinite; }
+        .lemon-float-2 { top: 70%; right: 8%; animation: floatLemon 6s ease-in-out infinite 2s; }
+        .lemon-float-3 { bottom: 30%; left: 10%; animation: floatLemon 7s ease-in-out infinite 1s; }
+        @keyframes floatLemon { 0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.05; } 50% { transform: translateY(-15px) rotate(180deg); opacity: 0.1; } }
+        .ad-container { margin: 20px auto; text-align: center; padding: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; max-width: 468px; min-height: 60px; border: 1px solid rgba(255, 215, 0, 0.1); }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+        .modal-content { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); margin: 5% auto; padding: 2rem; border-radius: 15px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255, 215, 0, 0.3); position: relative; animation: modalFadeIn 0.3s ease-out; }
+        @keyframes modalFadeIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        .close { color: #ffd700; float: right; font-size: 28px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+        .close:hover { color: #ffed4e; transform: scale(1.1); }
+        .modal-header { text-align: center; margin-bottom: 2rem; }
+        .modal-logo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem auto; border: 2px solid #ffd700; }
+        .modal-content h2 { color: #ffd700; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; }
+        .auth-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { color: #ffd700; font-weight: 600; font-size: 0.9rem; }
+        .auth-form input { padding: 0.8rem 1rem; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; background: rgba(255, 255, 255, 0.1); color: white; font-size: 0.9rem; transition: all 0.3s ease; }
+        .auth-form input:focus { outline: none; border-color: #ffd700; background: rgba(255, 255, 255, 0.15); box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1); }
+        .auth-form input::placeholder { color: #b9bbbe; }
+        .auth-btn { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; width: 100%; }
+        .primary-btn { background: linear-gradient(45deg, #ff6b00, #ff8c00); color: white; }
+        .primary-btn:hover { background: linear-gradient(45deg, #ff8c00, #ff6b00); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4); }
+        .auth-switch { text-align: center; margin-top: 1.5rem; color: #b9bbbe; font-size: 0.9rem; }
+        .auth-switch a { color: #ffd700; text-decoration: none; font-weight: 600; }
+        .auth-switch a:hover { text-decoration: underline; }
+        .profile-container { max-width: 800px; margin: 0 auto; }
+        .profile-header { text-align: center; margin-bottom: 3rem; }
+        .profile-title { font-size: 3rem; color: #ffd700; margin-bottom: 1rem; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        .profile-subtitle { font-size: 1.2rem; color: #cccccc; }
+        .profile-content { display: grid; gap: 2rem; }
+        .profile-card { background: rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: 20px; text-align: center; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.1); backdrop-filter: blur(10px); }
+        .profile-avatar-section { margin-bottom: 2rem; }
+        .avatar-container { position: relative; display: inline-block; margin-bottom: 1.5rem; }
+        .profile-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+        .avatar-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: all 0.3s ease; cursor: pointer; }
+        .avatar-container:hover .avatar-overlay { opacity: 1; }
+        .camera-icon { width: 32px; height: 32px; color: #ffd700; }
+        .profile-username { font-size: 1.8rem; color: #ffd700; margin-bottom: 0.5rem; font-weight: 600; }
+        .profile-email { color: #cccccc; font-size: 1rem; margin-bottom: 1.5rem; }
+        .change-avatar-btn { background: rgba(255, 215, 0, 0.1); color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.3); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        .change-avatar-btn:hover { background: rgba(255, 215, 0, 0.2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2); }
+        .profile-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .stat-item { text-align: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.1); }
+        .stat-number { font-size: 2rem; font-weight: 700; color: #ffd700; margin-bottom: 0.5rem; }
+        .stat-label { color: #cccccc; font-size: 0.9rem; }
+        .profile-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+        .profile-action-btn { display: flex; align-items: center; justify-content: center; gap: 0.8rem; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; text-decoration: none; }
+        .profile-action-btn:hover { background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2); }
+        .action-icon { width: 20px; height: 20px; }
+        .settings-container { max-width: 800px; margin: 0 auto; }
+        .settings-header { text-align: center; margin-bottom: 3rem; }
+        .settings-title { font-size: 3rem; color: #ffd700; margin-bottom: 1rem; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        .settings-subtitle { font-size: 1.2rem; color: #cccccc; }
+        .settings-content { display: grid; gap: 2rem; }
+        .settings-card { background: rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.1); backdrop-filter: blur(10px); }
+        .settings-card-title { font-size: 1.5rem; color: #ffd700; margin-bottom: 1.5rem; font-weight: 600; }
+        .settings-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .settings-form .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .settings-form label { color: #ffd700; font-weight: 600; font-size: 0.9rem; }
+        .settings-form input { padding: 0.8rem 1rem; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; background: rgba(255, 255, 255, 0.1); color: white; font-size: 0.9rem; transition: all 0.3s ease; }
+        .settings-form input:focus { outline: none; border-color: #ffd700; background: rgba(255, 255, 255, 0.15); box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1); }
+        .settings-save-btn { background: linear-gradient(45deg, #4CAF50, #45a049); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; align-self: flex-start; }
+        .settings-save-btn:hover { background: linear-gradient(45deg, #45a049, #3d8b40); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4); }
+        .account-info { display: flex; flex-direction: column; gap: 1rem; }
+        .info-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .info-label { color: #ffd700; font-weight: 600; }
+        .info-value { color: #ffffff; font-weight: 500; }
+        .danger-zone { border-color: rgba(244, 67, 54, 0.3); }
+        .danger-warning { color: #f44336; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .danger-btn { background: rgba(244, 67, 54, 0.1); color: #f44336; border: 1px solid rgba(244, 67, 54, 0.3); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        .danger-btn:hover { background: rgba(244, 67, 54, 0.2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 67, 54, 0.2); }
+        .modal-body { margin-bottom: 2rem; }
+        .modal-body p { color: #cccccc; line-height: 1.6; }
+        .modal-footer { display: flex; gap: 1rem; justify-content: flex-end; }
+        .modal-btn { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .modal-btn.secondary { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); }
+        .modal-btn.secondary:hover { background: rgba(255, 255, 255, 0.15); }
+        .modal-btn.danger { background: rgba(244, 67, 54, 0.1); color: #f44336; border: 1px solid rgba(244, 67, 54, 0.3); }
+        .modal-btn.danger:hover { background: rgba(244, 67, 54, 0.2); }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 1rem; padding: 1rem; }
+            .nav-menu { flex-wrap: wrap; justify-content: center; }
+            .hero-title { font-size: 2.5rem; }
+            .script-title, .profile-title, .settings-title { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .voting-section { flex-direction: column; align-items: center; }
+            .container { padding: 1rem; }
+            .modal-content { margin: 10% auto; width: 95%; padding: 1.5rem; }
+            .game-link-section { padding: 1.5rem; }
+            .game-link-title { font-size: 1.3rem; }
+            .profile-stats { grid-template-columns: 1fr; }
+            .profile-actions { grid-template-columns: 1fr; }
+            .modal-footer { flex-direction: column; }
+            .info-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        }
+        @keyframes universalRipple { 0% { transform: scale(0); opacity: 1; } 50% { opacity: 0.7; } 100% { transform: scale(3); opacity: 0; } }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+        .forgot-password-link { margin-top: 1rem; text-align: center; }
+        .crop-container { max-width: 400px; margin: 0 auto; }
+        .crop-area { width: 100%; height: 300px; background: #2d2d2d; border: 2px dashed #ffd700; border-radius: 10px; margin: 1rem 0; overflow: hidden; position: relative; }
+        .crop-preview { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ffd700; margin: 1rem auto; overflow: hidden; }
+        .crop-controls { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
+        .crop-btn { padding: 0.5rem 1rem; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; }
+        .crop-btn.primary { background: #ffd700; color: #1a1a1a; }
+        .crop-btn.secondary { background: #666; color: white; }
+    </style>
 </head>
 <body>
+    <!-- Lemon Doodles Background -->
     <div class="lemon-doodles">
         <div class="lemon lemon1">🍋</div>
         <div class="lemon lemon2">🍋</div>
@@ -16,7 +236,7 @@
         <div class="lemon lemon5">🍋</div>
     </div>
 
-    <!-- Login Modal -->
+    <!-- All Modals -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -32,54 +252,12 @@
                     <input type="password" id="loginPassword" placeholder="Password" required>
                 </div>
                 <button type="submit" class="auth-btn primary-btn">Login</button>
-                <div class="auth-links">
-                    <a href="#ForgotPassword" class="forgot-password">Forgot Password?</a>
-                </div>
             </form>
             <p class="auth-switch">Don't have an account? <a href="#Signup" id="showSignup">Sign up</a></p>
+            <p class="auth-switch forgot-password-link"><a href="#" onclick="showForgotPasswordModal()">Forgot Password?</a></p>
         </div>
     </div>
 
-    <!-- Forgot Password Modal -->
-    <div id="forgotPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-header">
-                <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
-                <h2>Reset Password</h2>
-            </div>
-            <form id="forgotPasswordForm" class="auth-form">
-                <div class="form-group">
-                    <input type="email" id="forgotEmail" placeholder="Enter your email" required>
-                </div>
-                <button type="submit" class="auth-btn primary-btn">Send Reset Link</button>
-            </form>
-            <p class="auth-switch">Remember your password? <a href="#Login" id="showLoginFromForgot">Login</a></p>
-        </div>
-    </div>
-
-    <!-- Retrieve Password Section -->
-    <section id="retrieve-section" class="section">
-        <div class="retrieve-container">
-            <div class="retrieve-header">
-                <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
-                <h1>Reset Your Password</h1>
-                <p>Enter your new password below</p>
-            </div>
-            <form id="retrievePasswordForm" class="auth-form">
-                <div class="form-group">
-                    <input type="password" id="retrieveNewPassword" placeholder="New Password" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="retrieveConfirmPassword" placeholder="Confirm New Password" required>
-                </div>
-                <button type="submit" class="auth-btn primary-btn">Change Password</button>
-            </form>
-            <p class="auth-switch">Back to <a href="#Login">Login</a></p>
-        </div>
-    </section>
-
-    <!-- Signup Modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -103,24 +281,58 @@
         </div>
     </div>
 
-    <!-- Verification Modal -->
-    <div id="verificationModal" class="modal">
+    <div id="forgotPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-header">
                 <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
-                <h2>Verify Your Email</h2>
-                <p>We sent a verification code to your email</p>
+                <h2>Reset Password</h2>
             </div>
-            <form id="verificationForm" class="auth-form">
+            <form id="forgotPasswordForm" class="auth-form">
                 <div class="form-group">
-                    <input type="text" id="verificationCode" placeholder="Enter verification code" required maxlength="6">
+                    <input type="email" id="forgotEmail" placeholder="Enter your email" required>
                 </div>
-                <button type="submit" class="auth-btn primary-btn">Verify Account</button>
+                <button type="submit" class="auth-btn primary-btn">Send Reset Link</button>
             </form>
-            <div class="verification-actions">
-                <button type="button" class="resend-btn" onclick="resendVerificationCode()">Resend Code</button>
-                <p class="timer" id="resendTimer">Resend available in <span id="timer">60</span>s</p>
+        </div>
+    </div>
+
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
+                <h2>Create New Password</h2>
+            </div>
+            <form id="resetPasswordForm" class="auth-form">
+                <div class="form-group">
+                    <input type="password" id="newPasswordReset" placeholder="New Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPasswordReset" placeholder="Confirm New Password" required>
+                </div>
+                <button type="submit" class="auth-btn primary-btn">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cropAvatarModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Crop Profile Picture</h2>
+            </div>
+            <div class="crop-container">
+                <div class="crop-area" id="cropArea">
+                    <img id="cropImage" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="crop-preview">
+                    <img id="cropPreview" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="crop-controls">
+                    <button class="crop-btn secondary" onclick="hideCropModal()">Cancel</button>
+                    <button class="crop-btn primary" onclick="saveCroppedAvatar()">Save</button>
+                </div>
             </div>
         </div>
     </div>
@@ -148,28 +360,26 @@
         </div>
     </div>
 
-    <!-- Avatar Crop Modal -->
-    <div id="cropModal" class="modal">
-        <div class="modal-content crop-modal">
-            <span class="close">&times;</span>
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
             <div class="modal-header">
-                <h2>Crop Profile Picture</h2>
+                <h2>Delete Account</h2>
             </div>
-            <div class="crop-container">
-                <div id="cropArea" class="crop-area">
-                    <img id="cropImage" src="" alt="Crop preview">
+            <div class="modal-body">
+                <p>Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost.</p>
+                <div class="form-group">
+                    <input type="password" id="deletePassword" placeholder="Enter your password to confirm" required>
                 </div>
-                <div class="crop-controls">
-                    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="1">
-                    <div class="crop-actions">
-                        <button type="button" class="crop-btn secondary" onclick="hideCropModal()">Cancel</button>
-                        <button type="button" class="crop-btn primary" onclick="saveCroppedAvatar()">Save</button>
-                    </div>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn secondary" onclick="hideDeleteConfirmation()">Cancel</button>
+                <button class="modal-btn danger" onclick="deleteAccount()">Delete Account</button>
             </div>
         </div>
     </div>
 
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-brand">
             <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="logo">
@@ -184,6 +394,7 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <main class="container">
         <!-- Home Section -->
         <section id="home-section" class="section active">
@@ -417,7 +628,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
                                 <img id="profileAvatar" src="https://static.xx.fbcdn.net/rsrc.php/v1/yR/r/tInzwsw2pVX.png" alt="Profile" class="profile-avatar">
                                 <div class="avatar-overlay" onclick="document.getElementById('avatarInput').click()">
                                     <svg class="camera-icon" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 15.2C13.767 15.2 15.2 13.767 15.2 12 15.2 10.233 13.767 8.8 12 8.8 10.233 8.8 8.8 10.233 8.8 12 8.8 13.767 10.233 15.2 12 15.2zM20 5h-3.17L15 3H9L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
                                     </svg>
                                 </div>
                             </div>
@@ -522,25 +733,993 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2341c827712daf
         </section>
     </main>
 
-    <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Delete Account</h2>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn secondary" onclick="hideDeleteConfirmation()">Cancel</button>
-                <button class="modal-btn danger" onclick="deleteAccount()">Delete Account</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- RevenueCPM Ad Container -->
+    <!-- Ad Container -->
     <div id="ad-container" class="ad-container"></div>
 
-    <script src="script.js"></script>
+    <script>
+        // COMPLETE JAVASCRIPT - COMBINED
+        const API_BASE_URL = window.location.origin + '/api';
+        
+        let adLoaded = false;
+        let secondAdLoaded = false;
+        let currentUser = null;
+        let voteCounts = {
+            thumbsUp: 0,
+            thumbsDown: 0,
+            favorite: 0
+        };
+        const DEFAULT_AVATAR = 'https://static.xx.fbcdn.net/rsrc.php/v1/yR/r/tInzwsw2pVX.png';
+
+        // Load data from localStorage and server
+        async function loadAppData() {
+            const savedVotes = localStorage.getItem('lemonHubVotes');
+            const savedUser = localStorage.getItem('lemonHubUser');
+            const token = localStorage.getItem('lemonHubToken');
+            
+            if (savedVotes) {
+                voteCounts = JSON.parse(savedVotes);
+            }
+            
+            if (token && savedUser) {
+                currentUser = JSON.parse(savedUser);
+                await verifyToken();
+            }
+            
+            await loadVotesFromServer();
+            updateVoteDisplays();
+            updateVoteButtonStates();
+            updateAuthUI();
+            updateProfileUI();
+        }
+
+        // Verify token validity
+        async function verifyToken() {
+            const token = localStorage.getItem('lemonHubToken');
+            if (!token) return;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Token invalid');
+                }
+
+                const data = await response.json();
+                currentUser = data.user;
+                localStorage.setItem('lemonHubUser', JSON.stringify(data.user));
+            } catch (error) {
+                console.error('Token verification failed:', error);
+                localStorage.removeItem('lemonHubToken');
+                localStorage.removeItem('lemonHubUser');
+                currentUser = null;
+            }
+        }
+
+        // Load votes from server
+        async function loadVotesFromServer() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/votes`);
+                if (response.ok) {
+                    const data = await response.json();
+                    voteCounts = data.votes;
+                }
+            } catch (error) {
+                console.error('Failed to load votes:', error);
+            }
+        }
+
+        // Save data to localStorage
+        function saveAppData() {
+            localStorage.setItem('lemonHubVotes', JSON.stringify(voteCounts));
+            if (currentUser) {
+                localStorage.setItem('lemonHubUser', JSON.stringify(currentUser));
+            }
+        }
+
+        // Update vote count displays
+        function updateVoteDisplays() {
+            document.getElementById('thumbsUpCount').textContent = voteCounts.thumbsUp;
+            document.getElementById('thumbsDownCount').textContent = voteCounts.thumbsDown;
+            document.getElementById('favoriteCount').textContent = voteCounts.favorite;
+        }
+
+        // Update vote button states
+        function updateVoteButtonStates() {
+            const thumbsUpBtn = document.querySelector('.vote-btn.thumbs-up');
+            const thumbsDownBtn = document.querySelector('.vote-btn.thumbs-down');
+            const favoriteBtn = document.querySelector('.vote-btn.favorite');
+            
+            if (!currentUser) {
+                thumbsUpBtn.disabled = true;
+                thumbsDownBtn.disabled = true;
+                favoriteBtn.disabled = true;
+                
+                [thumbsUpBtn, thumbsDownBtn, favoriteBtn].forEach(btn => {
+                    btn.style.opacity = '0.6';
+                    btn.style.cursor = 'not-allowed';
+                });
+                return;
+            }
+            
+            if (currentUser.votes && currentUser.votes.thumbsUp) {
+                thumbsUpBtn.disabled = true;
+                thumbsUpBtn.style.opacity = '0.6';
+                thumbsUpBtn.style.cursor = 'not-allowed';
+            }
+            
+            if (currentUser.votes && currentUser.votes.thumbsDown) {
+                thumbsDownBtn.disabled = true;
+                thumbsDownBtn.style.opacity = '0.6';
+                thumbsDownBtn.style.cursor = 'not-allowed';
+            }
+            
+            if (currentUser.votes && currentUser.votes.favorite) {
+                favoriteBtn.disabled = true;
+                favoriteBtn.style.opacity = '0.6';
+                favoriteBtn.style.cursor = 'not-allowed';
+            }
+        }
+
+        // Handle voting with server integration
+        async function vote(type) {
+            if (!currentUser) {
+                alert('Please login to vote!');
+                navigateTo('#Login');
+                return;
+            }
+            
+            if (currentUser.votes && currentUser.votes[type]) {
+                alert(`You can only ${type === 'thumbsUp' ? 'like' : type === 'thumbsDown' ? 'dislike' : 'favorite'} once per account!`);
+                return;
+            }
+            
+            try {
+                const token = localStorage.getItem('lemonHubToken');
+                const response = await fetch(`${API_BASE_URL}/vote`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ type })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Vote failed');
+                }
+
+                // Update local state
+                voteCounts = data.votes;
+                currentUser.votes = data.userVotes;
+                
+                updateVoteDisplays();
+                updateVoteButtonStates();
+                updateProfileStats();
+                saveAppData();
+                activateAd();
+                
+                // Visual feedback
+                const button = event.currentTarget;
+                button.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    button.style.transform = 'scale(1)';
+                }, 200);
+
+            } catch (error) {
+                console.error('Vote error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Enhanced Authentication Functions
+        async function handleEmailLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Login failed');
+                }
+
+                handleUserLogin(data.user, data.token);
+                hideModals();
+
+            } catch (error) {
+                console.error('Login error:', error);
+                alert(error.message);
+            }
+        }
+
+        async function handleEmailSignup(event) {
+            event.preventDefault();
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            
+            if (!username || !email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Signup failed');
+                }
+
+                showNotification('Account created! Please check your email for verification.');
+                hideModals();
+                
+                // Show verification modal
+                showVerificationModal(email);
+
+            } catch (error) {
+                console.error('Signup error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Verification Modal
+        function showVerificationModal(email) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'block';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                    <div class="modal-header">
+                        <img src="https://imagizer.imageshack.com/img922/3774/Sk58gA.png" alt="Lemon Hub" class="modal-logo">
+                        <h2>Verify Your Email</h2>
+                    </div>
+                    <div class="auth-form">
+                        <p>We've sent a verification code to your email. Please enter it below:</p>
+                        <div class="form-group">
+                            <input type="text" id="verificationCode" placeholder="Enter verification code" required>
+                        </div>
+                        <button type="button" class="auth-btn primary-btn" onclick="verifyAccount('${email}')">Verify Account</button>
+                        <p class="auth-switch">Didn't receive the code? <a href="#" onclick="resendVerification('${email}')">Resend</a></p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        async function verifyAccount(email) {
+            const code = document.getElementById('verificationCode').value;
+            
+            if (!code) {
+                alert('Please enter the verification code');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, code })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Verification failed');
+                }
+
+                handleUserLogin(data.user, data.token);
+                document.querySelector('.modal').remove();
+                showNotification('Account verified successfully!');
+
+            } catch (error) {
+                console.error('Verification error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Forgot Password
+        async function handleForgotPassword(event) {
+            if (event) event.preventDefault();
+            const email = document.getElementById('forgotEmail').value;
+            
+            if (!email) {
+                alert('Please enter your email address');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Password reset failed');
+                }
+
+                alert('Password reset email sent! Please check your inbox.');
+                hideModals();
+
+            } catch (error) {
+                console.error('Forgot password error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Reset Password
+        async function handleResetPassword(event) {
+            event.preventDefault();
+            const newPassword = document.getElementById('newPasswordReset').value;
+            const confirmPassword = document.getElementById('confirmPasswordReset').value;
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const token = urlParams.get('token');
+
+            if (!token) {
+                alert('Invalid reset link');
+                return;
+            }
+
+            if (!newPassword || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token, newPassword, confirmPassword })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Password reset failed');
+                }
+
+                alert('Password reset successfully! You can now login with your new password.');
+                hideModals();
+                navigateTo('#Login');
+
+            } catch (error) {
+                console.error('Reset password error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Change Password
+        async function handlePasswordChange(event) {
+            event.preventDefault();
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                alert('New password must be at least 6 characters long');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('New passwords do not match');
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('lemonHubToken');
+                const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ currentPassword, newPassword, confirmPassword })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Password change failed');
+                }
+
+                event.target.reset();
+                showNotification('Password updated successfully!');
+
+            } catch (error) {
+                console.error('Change password error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Delete Account
+        async function deleteAccount() {
+            const password = document.getElementById('deletePassword').value;
+            
+            if (!password) {
+                alert('Please enter your password to confirm deletion');
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('lemonHubToken');
+                const response = await fetch(`${API_BASE_URL}/auth/delete-account`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Account deletion failed');
+                }
+
+                // Clear local storage
+                currentUser = null;
+                localStorage.removeItem('lemonHubUser');
+                localStorage.removeItem('lemonHubToken');
+                updateAuthUI();
+                hideDeleteConfirmation();
+                showNotification('Account deleted successfully');
+                
+                // Redirect to home
+                setTimeout(() => {
+                    window.location.href = window.location.origin + window.location.pathname;
+                }, 1000);
+
+            } catch (error) {
+                console.error('Delete account error:', error);
+                alert(error.message);
+            }
+        }
+
+        // Handle user login
+        function handleUserLogin(user, token) {
+            currentUser = user;
+            localStorage.setItem('lemonHubToken', token);
+            localStorage.setItem('lemonHubUser', JSON.stringify(user));
+            
+            updateAuthUI();
+            updateProfileUI();
+            saveAppData();
+            
+            showNotification(`Welcome, ${user.name || user.username}!`);
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('lemonHubToken');
+            localStorage.removeItem('lemonHubUser');
+            updateAuthUI();
+            saveAppData();
+            showNotification('Logged out successfully');
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+
+        // Update Auth UI
+        function updateAuthUI() {
+            const authSection = document.getElementById('authSection');
+            
+            if (currentUser) {
+                authSection.innerHTML = `
+                    <div class="user-profile" onclick="toggleProfileDropdown()">
+                        <img src="${currentUser.avatar || DEFAULT_AVATAR}" alt="${currentUser.username}" class="user-avatar">
+                        <span class="user-name">${currentUser.username}</span>
+                    </div>
+                `;
+            } else {
+                authSection.innerHTML = `
+                    <button id="authButton" class="nav-btn auth" onclick="navigateTo('#Login')">Login</button>
+                `;
+            }
+            
+            updateVoteButtonStates();
+        }
+
+        // Update Profile UI
+        function updateProfileUI() {
+            if (!currentUser) return;
+            
+            document.getElementById('profileUsername').textContent = currentUser.username;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profileAvatar').src = currentUser.avatar || DEFAULT_AVATAR;
+            
+            document.getElementById('settingsUsername').textContent = currentUser.username;
+            document.getElementById('settingsEmail').textContent = currentUser.email;
+            document.getElementById('settingsMemberSince').textContent = new Date(currentUser.memberSince).toLocaleDateString();
+            
+            updateProfileStats();
+        }
+
+        function updateProfileStats() {
+            if (!currentUser) return;
+            
+            const likesCount = (currentUser.votes && currentUser.votes.thumbsUp) ? 1 : 0;
+            const favoritesCount = (currentUser.votes && currentUser.votes.favorite) ? 1 : 0;
+            
+            document.getElementById('likesCount').textContent = likesCount;
+            document.getElementById('favoritesCount').textContent = favoritesCount;
+            document.getElementById('memberSince').textContent = new Date(currentUser.memberSince).toLocaleDateString();
+        }
+
+        // Profile Dropdown
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('profileDropdown');
+            const profile = document.querySelector('.user-profile');
+            
+            if (profile && !profile.contains(event.target) && dropdown && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Avatar Upload with Crop
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Please select an image smaller than 5MB');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                showCropModal(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showCropModal(imageSrc) {
+            document.getElementById('cropImage').src = imageSrc;
+            document.getElementById('cropPreview').src = imageSrc;
+            document.getElementById('cropAvatarModal').style.display = 'block';
+        }
+
+        function hideCropModal() {
+            document.getElementById('cropAvatarModal').style.display = 'none';
+        }
+
+        function saveCroppedAvatar() {
+            // Simple implementation - in production, use a proper cropper library
+            const imageSrc = document.getElementById('cropImage').src;
+            currentUser.avatar = imageSrc;
+            updateAuthUI();
+            updateProfileUI();
+            saveAppData();
+            hideCropModal();
+            showNotification('Profile picture updated successfully!');
+            
+            // Update on server
+            updateProfileOnServer();
+        }
+
+        async function updateProfileOnServer() {
+            try {
+                const token = localStorage.getItem('lemonHubToken');
+                const response = await fetch(`${API_BASE_URL}/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        avatar: currentUser.avatar,
+                        username: currentUser.username
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    currentUser = data.user;
+                    localStorage.setItem('lemonHubUser', JSON.stringify(data.user));
+                }
+            } catch (error) {
+                console.error('Profile update error:', error);
+            }
+        }
+
+        // Navigation System
+        function navigateTo(hash) {
+            window.location.hash = hash;
+            showSection(hash);
+            document.getElementById('profileDropdown').classList.remove('show');
+            activateAd();
+            
+            // Handle reset password flow
+            if (hash.includes('retrieve')) {
+                showResetPasswordModal();
+            }
+        }
+
+        function showSection(hash) {
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            let sectionId;
+            if (hash === '#Home' || hash === '') {
+                sectionId = 'home-section';
+                document.querySelector('.nav-btn[onclick="navigateTo(\'#Home\')"]').classList.add('active');
+            } else if (hash === '#Script') {
+                sectionId = 'script-section';
+                document.querySelector('.nav-btn[onclick="navigateTo(\'#Script\')"]').classList.add('active');
+            } else if (hash === '#Profile') {
+                sectionId = 'profile-section';
+            } else if (hash === '#Settings') {
+                sectionId = 'settings-section';
+            } else if (hash === '#Login') {
+                showLoginModal();
+                return;
+            } else if (hash === '#Signup') {
+                showSignupModal();
+                return;
+            }
+            
+            const sectionElement = document.getElementById(sectionId);
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+            }
+        }
+
+        // Modal Functions
+        function showLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function showSignupModal() {
+            document.getElementById('signupModal').style.display = 'block';
+        }
+
+        function showForgotPasswordModal() {
+            hideModals();
+            document.getElementById('forgotPasswordModal').style.display = 'block';
+        }
+
+        function showResetPasswordModal() {
+            document.getElementById('resetPasswordModal').style.display = 'block';
+        }
+
+        function hideModals() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        function showDeleteConfirmation() {
+            document.getElementById('deleteModal').style.display = 'block';
+        }
+
+        function hideDeleteConfirmation() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+
+        // Copy Script
+        function copyScript() {
+            const scriptCode = document.getElementById('script-code').textContent;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(scriptCode).then(function() {
+                    showCopyFeedback();
+                }, function(err) {
+                    fallbackCopyTextToClipboard(scriptCode);
+                });
+            } else {
+                fallbackCopyTextToClipboard(scriptCode);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyFeedback();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showCopyFeedback() {
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalText = copyBtn.innerHTML;
+            
+            copyBtn.innerHTML = '<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>Copied!';
+            copyBtn.style.background = 'linear-gradient(45deg, #45a049, #3d8b40)';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            }, 2000);
+        }
+
+        // Ad System
+        function activateAd() {
+            if (!adLoaded) {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = '//pl27744551.revenuecpmgate.com/bb/8c/2d/bb8c2d6e31450dd77b72750cfb7d1804.js';
+                document.getElementById('ad-container').appendChild(script);
+                adLoaded = true;
+            }
+            
+            if (!secondAdLoaded) {
+                const secondScript = document.createElement('script');
+                secondScript.type = 'text/javascript';
+                secondScript.src = '//pl27744551.revenuecpmgate.com/bb/8c/2d/bb8c2d6e31450dd77b72750cfb7d1804.js';
+                document.getElementById('script-code').insertAdjacentElement('afterend', secondScript);
+                secondAdLoaded = true;
+            }
+        }
+
+        // Notification System
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(255, 215, 0, 0.9);
+                color: #1a1a1a;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                z-index: 1001;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Ripple Effects
+        function createUniversalRipple(event) {
+            const size = 50;
+            const x = event.clientX - size / 2;
+            const y = event.clientY - size / 2;
+            
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                width: ${size}px;
+                height: ${size}px;
+                background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 235, 59, 0.2) 30%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: universalRipple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+                z-index: 99999;
+            `;
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        function addEnhancedRipple(element, event) {
+            if (!element.getBoundingClientRect) return;
+            
+            const rect = element.getBoundingClientRect();
+            const size = 70;
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: universalRipple 0.5s ease-out;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+                z-index: 10;
+            `;
+            
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 500);
+        }
+
+        // Initialize Page
+        function initializePage() {
+            const interactiveElements = [
+                '.nav-btn', '.copy-btn', '.accept-invite-btn', 
+                '.executor-item', '.legend-item', '.feature-card',
+                '.script-box', '.invitation-card', '.hero',
+                '.vote-btn', '.game-link-btn', '.auth-btn',
+                '.profile-action-btn', '.change-avatar-btn',
+                '.settings-save-btn', '.danger-btn', '.modal-btn',
+                'button', 'a'
+            ];
+            
+            interactiveElements.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    element.style.position = element.style.position || 'relative';
+                    element.style.overflow = element.style.overflow || 'hidden';
+                    
+                    element.addEventListener('click', function(event) {
+                        addEnhancedRipple(this, event);
+                    });
+                });
+            });
+            
+            const lemons = document.querySelectorAll('.lemon, .lemon-float');
+            lemons.forEach(lemon => {
+                lemon.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    this.style.animation = 'none';
+                    this.offsetHeight;
+                    this.style.animation = this.classList.contains('lemon-float') ? 'floatLemon 2s ease-in-out' : 'float 2s ease-in-out';
+                });
+            });
+        }
+
+        // Setup Modal Events
+        function setupModalEvents() {
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', hideModals);
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    hideModals();
+                }
+            });
+            
+            // Form submissions
+            document.getElementById('emailLoginForm').addEventListener('submit', handleEmailLogin);
+            document.getElementById('emailSignupForm').addEventListener('submit', handleEmailSignup);
+            document.getElementById('forgotPasswordForm').addEventListener('submit', handleForgotPassword);
+            document.getElementById('resetPasswordForm').addEventListener('submit', handleResetPassword);
+            document.getElementById('changePasswordForm').addEventListener('submit', handlePasswordChange);
+            
+            // Auth switch links
+            document.getElementById('showSignup')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                hideModals();
+                showSignupModal();
+            });
+            
+            document.getElementById('showLogin')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                hideModals();
+                showLoginModal();
+            });
+        }
+
+        // Handle URL routing
+        window.addEventListener('hashchange', function() {
+            showSection(window.location.hash);
+        });
+
+        // Initialize everything when DOM is loaded
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash || '#Home';
+            showSection(hash);
+            
+            loadAppData();
+            initializePage();
+            setupModalEvents();
+            
+            // Check for reset password token
+            if (window.location.hash.includes('retrieve')) {
+                showResetPasswordModal();
+            }
+        });
+    </script>
 </body>
 </html>
